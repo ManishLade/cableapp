@@ -1,0 +1,128 @@
+//@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-deep-purple, 50);
+$accent:  mat-palette($mat-purple, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+.m2app-dark {
+  $dark-primary: mat-palette($mat-deep-purple, 700, 500, 900);
+  $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-deep-orange);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  color: #852b99;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.button {
+  color: #1d943b;
+}
+
+
+
+.searchSection {
+  width: 25%;
+  padding: 2em 0 1em 0;
+}
+/*  This can also be used.
+.tableSection {
+  height: 100%;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+*/
+.tableSection {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.matTable {
+    width: 40em;
+    overflow: scroll;
+}
+
+.mat-header-cell{
+  text-align: left;
+  background-color: whitesmoke;
+}
+
+.mat-cell {
+  text-align: left;
+}
+
+.mat-checkbox {
+    text-align: center;
+}
+
+.formError {
+  color: red;
+  font-size: smaller;
+}
+
+.floatRight{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-top: 6px;
+    float: right;
+}
+
+::ng-deep .flex-stretch {
+    display: -ms-flexbox !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    -webkit-align-self: stretch !important;
+    -ms-flex-item-align: stretch !important;
+    align-self: stretch !important;
+    /* align-items center so that cell content is vertically centered */
+    -webkit-align-items: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+::ng-deep .mat-toolbar{
+    background: #852b99 !important;
+    color: ghostwhite !important;
+    height: 42px !important;
+    line-height: 20px !important;
+}
+
+::ng-deep .mat-flat-button{
+  background: #1d943b !important
+}
+
+::ng-deep .mat-dialog-container{
+  height: 400px;
+  width: 300px;
+  border-radius: 10px;
+  background: lightcyan;
+  color: #039be5;
+}
+
+:host ::ng-deep .modal-dialog {
+  width: 25% !important;
+}
+
