@@ -22,8 +22,8 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        const userData = 'username=' + username + '&password=' + password + '&grant_type=password';
+    login(username: string, password: string, roleText: string) {
+        const userData = 'username=' + username + '&password=' + password + '&grant_type=password&role=' + roleText;
         const reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic MDk5MTUzYzI2MjUxNDliYzhlY2IzZTg1ZTAzZjAwMjI6ZGIzT0lzaitCWEU5TlpEeTB0OFczVGNOZWtyRisyZC8xc0ZuV0c0SG5WOFRaWTMwaVRPZHRWV0pHOGFiV3ZCMUdsT2dKdVFaZGNGMkx1cW0vaGNjTXc9PQ=='});
 

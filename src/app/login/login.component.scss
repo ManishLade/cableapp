@@ -1,7 +1,36 @@
+
+.pull-img {
+    width: 58%;
+    float: left;
+    margin-top: 100px;
+    padding-left: 10px;
+}
+
+.form-content {
+    background-color: #fff;
+    width: 291px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+    padding: 30px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.form-copyright {
+    text-align: center;
+    width: 250px;
+    margin: 0 auto;
+    padding: 10px 10px 0 10px;
+    color: #999;
+    font-size: 11px;
+}
+
 $topnav-background-color: #222;
 :host {
     display: block;
 }
+
+
 .login-page {
     position: absolute;
     top: 0;
