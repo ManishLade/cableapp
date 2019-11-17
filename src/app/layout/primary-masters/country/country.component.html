@@ -11,7 +11,7 @@
 
 <div class="container mat-elevation-z8">
 
-  <div class="form">
+  <div style="background-color: ghostwhite;" class="form">
     <mat-form-field floatPlaceholder="never" color="blue">
       Search <input matInput #filter placeholder="">
     </mat-form-field>
@@ -34,6 +34,14 @@
     <ng-container matColumnDef="Status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell class="flex-stretch" *matCellDef="let row"> {{row.isApproved}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Edit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
+      <mat-cell class="flex-stretch" *matCellDef="let row"> Edit</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
+      <mat-cell class="flex-stretch" *matCellDef="let row"> Delete</mat-cell>
     </ng-container>
     <!-- <ng-container matColumnDef="Edit">
       <mat-cell *matCellDef="let row; let i=index;">
