@@ -1,6 +1,6 @@
 <div>
     <div class="pull-img">
-        <img src="assets/images/skyhd.jpg" width="75%" alt="Sky HD">
+        <img src="assets/images/skyhd.jpg" width="85%" alt="Sky HD">
     </div>
     <div class="pull-right" style="margin-right: 10px; margin-bottom: 10px;">
         <!-- BEGIN LOGO -->
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <select class="custom-select" (change)="changeRole($event)" formControlName="role">
+                    <select class="custom-select" formControlName="role">
                         <option value="">Choose your role</option>
                         <option *ngFor="let role of roles" [ngValue]="role">{{role}}</option>
                     </select>

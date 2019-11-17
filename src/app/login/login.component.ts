@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -14,15 +14,16 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
+    returnUrl = `\dashboard`;
     error = '';
-    // City Names
+    // role Names
     roles: any = ['User', 'Owner', 'Subscriber'];
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
+        private ngZone: NgZone,
         private authenticationService: AuthenticationService
     ) {
         // redirect to home if already logged in
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/dashboard`;
     }
 
     // convenience getter for easy access to form fields
@@ -56,31 +57,19 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService
-            .login(this.f.username.value, this.f.password.value, this.f.role.value)
+        const self = this;
+        self.authenticationService
+            .login(self.f.username.value, self.f.password.value, self.f.role.value)
             .pipe(first())
             .subscribe(
                 data => {
                     console.log(data);
-                    this.router.navigate([this.returnUrl]);
+                    self.ngZone.run(() => {self.router.navigate([self.returnUrl], { relativeTo: this.route }); });
                 },
                 error => {
-                    this.error = error;
-                    this.loading = false;
+                    self.error = error;
+                    self.loading = false;
                 }
             );
-    }
-
-    // Getter method to access formcontrols
-    get roleText() {
-        return this.loginForm.get('role');
-    }
-    // Choose city using select dropdown
-    changeRole(e) {
-
-        // this.roleText.setValue(e.target.value, {
-        //     onlySelf: true
-        // });
-        // console.dir(this.roleText);
     }
 }
