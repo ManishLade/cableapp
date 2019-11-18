@@ -1,22 +1,62 @@
-<div class="login-page" [@routerTransition]>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>Pay TV SMS</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password' | translate }}">
+<div>
+    <div class="pull-img">
+        <img src="assets/images/skyhd.jpg" width="85%" alt="Sky HD">
+    </div>
+    <div class="pull-right" style="margin-right: 10px; margin-bottom: 10px;">
+        <!-- BEGIN LOGO -->
+        <div class="logo">
+            <img src="assets/images/logo-big.png" alt="">
+            <span style="color:#444">29</span>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN LOGIN -->
+        <div class="form-content">
+            <!-- BEGIN LOGIN FORM -->
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">{{ 'Register' | translate }}</a>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <select class="custom-select" formControlName="role">
+                        <option value="">Choose your role</option>
+                        <option *ngFor="let role of roles" [ngValue]="role">{{role}}</option>
+                    </select>
+
+                    <!-- error block -->
+                    <div class="invalid-feedback" *ngIf="submitted && f.role.errors?.required">
+                        <sup>*</sup>Please enter your role name
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </form>
+            <!-- END LOGIN FORM -->
+            <!-- BEGIN FORGOT PASSWORD FORM -->
+            <!-- END FORGOT PASSWORD FORM -->
+        </div>
+        <!-- END LOGIN -->
+        <!-- BEGIN COPYRIGHT -->
+        <div class="form-copyright">
+            2013 - 2019 © PayTV SMS Version 9.0
+            <br>
+            Developed By &amp; Product of <a href="http://www.aplombtechnology.com" target="_blank"><span
+                    style="color: white">Aplomb Technology</span></a>
         </div>
     </div>
 </div>
