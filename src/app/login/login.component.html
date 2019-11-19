@@ -2,9 +2,9 @@
     <div class="pull-img">
         <img src="assets/images/skyhd.jpg" width="85%" alt="Sky HD">
     </div>
-    <div class="pull-right" style="margin-right: 10px; margin-bottom: 10px;">
+    <div class="pull-right" style="margin-right: 25px;margin-bottom: 15px;width: 395px;">
         <!-- BEGIN LOGO -->
-        <div class="logo">
+        <div class="login-logo">
             <img src="assets/images/logo-big.png" alt="">
             <span style="color:#444">29</span>
         </div>
@@ -12,27 +12,29 @@
         <!-- BEGIN LOGIN -->
         <div class="form-content">
             <!-- BEGIN LOGIN FORM -->
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <h3 class="form-title">Login to your account</h3>
-                <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Username</label>
-                    <div class="controls">
-                        <div class="input-icon left">
-                            <i class="icon-user"></i>
-                            <input type="text" formControlName="username" class="form-control control-group"
-                                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                <div *ngIf="f.username.errors.required">Username is required</div>
-                            </div>
-                        </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="padding: 10px;" id="basic-addon1">
+                            <i class="fa fa-user fa-3" aria-hidden="true"></i></span>
+                    </div>
+                    <!-- <span class="input-group-addon">@</span> -->
+                    <input type="text" formControlName="username" placeholder="Username" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
                     </div>
 
-
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" formControlName="password" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="padding: 10px;" id="basic-addon1">
+                            <i class="fa fa-lock" aria-hidden="true"></i></span>
+                    </div>
+                    <!-- <span class="input-group-addon">@</span> -->
+                    <input type="text" formControlName="password" placeholder="Password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
@@ -53,6 +55,18 @@
                     Login
                 </button>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                <div class="forget-password">
+                        <h4 style="color: #555;">Forgot your password ?</h4>
+                        <p>
+                            no worries, click <a href="javascript:;" id="forget-password">here</a>
+                            to reset your password.
+                        </p>
+                </div>
+                <div class="forget-password">
+                        <h4><a href="/SubscriberLogin">Click here</a> for Subscriber Login </h4>
+
+                </div>
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN FORGOT PASSWORD FORM -->
