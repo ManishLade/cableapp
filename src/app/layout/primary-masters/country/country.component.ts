@@ -24,12 +24,12 @@ import { HttpClient } from '@angular/common/http';
   ]
 })
 export class CountryComponent implements OnInit {
-  displayedColumns = ['Name', 'Created Date', 'Status']//, 'Edit', 'Delete'];
+  displayedColumns = ['Name', 'Created Date', 'Status'];// , 'Edit', 'Delete'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
   id: number;
-  name:string;
+  name: string;
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
@@ -47,9 +47,9 @@ export class CountryComponent implements OnInit {
     this.loadData();
   }
 
-  addNew(country: Country) {
+  addNew() {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: {country: country },
+      data: {country: new Country() },
       panelClass: 'country-class'
     });
 
@@ -86,7 +86,7 @@ export class CountryComponent implements OnInit {
 
   deleteItem(i: number, id: number, title: string, state: string, url: string) {
     this.index = i;
-    this.name = "id";
+    this.name = 'id';
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {id: id, title: title, state: state, url: url}
     });

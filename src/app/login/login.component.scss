@@ -1,11 +1,35 @@
 @import "../../../node_modules/font-awesome/scss/variables";
 @import "../../../node_modules/font-awesome/scss/icons";
+@import "../../../node_modules/font-awesome/scss/core";
+@import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 
 .pull-img {
     width: 58%;
     float: left;
     margin-top: 100px;
     padding-left: 10px;
+}
+
+.role-login-group{
+    display: flex;
+
+    select{
+        width: 53%;
+        margin-right: 25%;
+    }
+
+    button{
+        background-color: green;
+    }
+
+    .loginbtn{
+        &:after {
+            content: '&#xf35a'; 
+            height: 5px;
+            width: 5px;
+            display: inline-block;
+        }
+    }
 }
 
 .form-content {
