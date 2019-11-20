@@ -63,6 +63,21 @@
     margin-bottom: 20px !important;
 }
 
+.form-group.input-group{
+    padding-bottom: 4px;
+}
+
+.role-login-group{
+    display: flex;
+
+    select{
+        width: 53%;
+        margin-right: 26%;
+    }
+
+}
+
+
 .form-copyright {
     text-align: center;
     width: 250px;
@@ -75,7 +90,14 @@
     color: rgb(59, 51, 51);
     font-weight: 500;
     font-size: 18px;
+    font-family: inherit;
+    line-height: 20px;
 }
 .forget-password {
     margin-top: 25px;
+}
+
+a {
+    text-shadow: none !important;
+    color: #0d638f;
 }

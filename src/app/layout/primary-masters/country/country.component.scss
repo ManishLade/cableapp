@@ -1,5 +1,4 @@
 //@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 @import '~@angular/material/theming';
 
 @include mat-core();
@@ -126,3 +125,20 @@ body {
   width: 25% !important;
 }
 
+.cadetblue-icon{
+  color: cadetblue;
+}
+.gray-icon{
+  color:dimgrey
+}
+
+
+.country-caption {
+  float: left;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 7px;
+}

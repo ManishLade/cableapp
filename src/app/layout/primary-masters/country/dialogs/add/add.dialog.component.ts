@@ -6,35 +6,39 @@ import {Issue, Country} from '../../models/issue';
 
 @Component({
   selector: 'app-add.dialog',
-  templateUrl: './add.dialog.html',
+  template: `
+    <div>
+      <h1>Home</h1>
+    </div>
+  `,
   styleUrls: ['./add.dialog.scss']
 })
 
 export class AddDialogComponent {
-  constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Country,
-              public dataService: DataService) { }
+  // constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
+  //             @Inject(MAT_DIALOG_DATA) public data: Country,
+  //             public dataService: DataService) { }
 
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
+  // formControl = new FormControl('', [
+  //   Validators.required
+  //   // Validators.email,
+  // ]);
 
-  getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
-  }
+  // getErrorMessage() {
+  //   return this.formControl.hasError('required') ? 'Required field' :
+  //     this.formControl.hasError('email') ? 'Not a valid email' :
+  //       '';
+  // }
 
-  submit() {
-  // emppty stuff
-  }
+  // submit() {
+  // // emppty stuff
+  // }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+  // onNoClick(): void {
+  //   this.dialogRef.close();
+  // }
 
-  public confirmAdd(): void {
-    this.dataService.addCountry(this.data);
-  }
+  // public confirmAdd(): void {
+  //   this.dataService.addCountry(this.data);
+  // }
 }

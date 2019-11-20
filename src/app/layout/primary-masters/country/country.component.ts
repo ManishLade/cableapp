@@ -11,12 +11,13 @@ import {map} from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.scss'],
-  providers:[DataService],
+  providers: [DataService],
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
@@ -24,7 +25,7 @@ import { HttpClient } from '@angular/common/http';
   ]
 })
 export class CountryComponent implements OnInit {
-  displayedColumns = ['Name', 'Created Date', 'Status'];// , 'Edit', 'Delete'];
+  displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
@@ -33,7 +34,9 @@ export class CountryComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
-              public dataService: DataService) {}
+              public dataService: DataService,
+        private route: ActivatedRoute,
+        private router: Router, ) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -61,6 +64,10 @@ export class CountryComponent implements OnInit {
         this.refreshTable();
       }
     });
+  }
+
+  addCountry() {
+      this.router.navigate(['/primary-masters/country/add'], { relativeTo: this.route });
   }
 
   startEdit(i: number, id: number, title: string, state: string, url: string, created_at: string, updated_at: string) {
