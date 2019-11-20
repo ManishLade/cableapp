@@ -1,13 +1,15 @@
 <mat-toolbar>
-  <i class="icon-cogs"></i>
-  <span>Manage Country</span>
-  <div class="ml-auto">
-  <button mat-flat-button color="accent" (click)="addNew()">
-    <mat-icon>add</mat-icon>
-    Add
-  </button>
+  <div class="country-caption">
+    <i class="fa fa-cogs" style="padding-right: 5px;margin-left: -6px;" aria-hidden="true"></i>
+    <span>Manage Country</span>
   </div>
-</mat-toolbar>  
+  <div class="ml-auto">
+    <button mat-flat-button color="accent" (click)="addNew()">
+      <mat-icon>add</mat-icon>
+      Add
+    </button>
+  </div>
+</mat-toolbar>
 
 <div class="container mat-elevation-z8">
 
@@ -24,12 +26,12 @@
     <!-- ID Column -->
     <ng-container matColumnDef="Name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-      <mat-cell class="flex-stretch" *matCellDef="let row" >{{row.name}}</mat-cell>
+      <mat-cell class="flex-stretch" *matCellDef="let row">{{row.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Created Date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
-      <mat-cell class="flex-stretch" *matCellDef="let row" >{{row.CreatedDate}}</mat-cell>
+      <mat-cell class="flex-stretch" *matCellDef="let row">{{row.CreatedDate}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="Status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
@@ -37,27 +39,23 @@
     </ng-container>
     <ng-container matColumnDef="Edit">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
-      <mat-cell class="flex-stretch" *matCellDef="let row"> Edit</mat-cell>
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button class="cadetblue-icon" svgIcon="archive">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Delete">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
-      <mat-cell class="flex-stretch" *matCellDef="let row"> Delete</mat-cell>
-    </ng-container>
-    <!-- <ng-container matColumnDef="Edit">
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
-          <mat-icon aria-label="Edit">Edit</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="Delete">
-      <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+        <button mat-icon-button class="gray-icon" svgIcon="archive">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
-    </ng-container> -->
-    
+    </ng-container>
+
+
+
     <!-- actions -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -68,10 +66,7 @@
     No results
   </div>
 
-  <mat-paginator #paginator
-                 [length]="dataSource.filteredData.length"
-                 [pageIndex]="0"
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 25, 100]">
+  <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>

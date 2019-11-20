@@ -24,7 +24,7 @@ import { HttpClient } from '@angular/common/http';
   ]
 })
 export class CountryComponent implements OnInit {
-  displayedColumns = ['Name', 'Created Date', 'Status']//, 'Edit', 'Delete'];
+  displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;

@@ -33,13 +33,13 @@
                             <i class="fa fa-lock" aria-hidden="true"></i></span>
                     </div>
                     <!-- <span class="input-group-addon">@</span> -->
-                    <input type="text" formControlName="password" placeholder="Password" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <input type="password" formControlName="password" placeholder="Password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 role-login-group">
                     <select class="custom-select" formControlName="role">
                         <option value="">Choose your role</option>
                         <option *ngFor="let role of roles" [ngValue]="role">{{role}}</option>
@@ -47,13 +47,15 @@
 
                     <!-- error block -->
                     <div class="invalid-feedback" *ngIf="submitted && f.role.errors?.required">
-                        <sup>*</sup>Please enter your role name
+                        <sup>*</sup>Please select your role
                     </div>
+                    <button [disabled]="loading" class="btn btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Login
+                            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
+                
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 
                 <div class="forget-password">
@@ -64,7 +66,7 @@
                         </p>
                 </div>
                 <div class="forget-password">
-                        <h4><a href="/SubscriberLogin">Click here</a> for Subscriber Login </h4>
+                        <h4><a>Click here</a> for Subscriber Login </h4>
 
                 </div>
             </form>
