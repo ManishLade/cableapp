@@ -4,10 +4,9 @@
     <span>Manage Country</span>
   </div>
   <div class="ml-auto">
-    <button mat-flat-button color="accent" (click)="addNew()">
-      <mat-icon>add</mat-icon>
-      Add
-    </button>
+      <button mat-flat-button color="accent" (click)="addCountry()">
+          <mat-icon>add</mat-icon>Add
+        </button>
   </div>
 </mat-toolbar>
 
@@ -70,3 +69,7 @@
     [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
+<ng-template #test let-link="link" let-name="name">
+   
+</ng-template>
+
