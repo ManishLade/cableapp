@@ -110,7 +110,14 @@ body {
 }
 
 ::ng-deep .mat-flat-button{
-  background: #1d943b !important
+  background: #1ebb45 !important;
+}
+.ml-auto button:hover{
+    background: #0d551f;
+}
+button:focus
+{
+    outline:none;
 }
 
 ::ng-deep .mat-dialog-container{

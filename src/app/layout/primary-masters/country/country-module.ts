@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UiSwitchModule } from 'ngx-ui-switch';
+import { SwitchComponent } from '@app/shared/modules/switch/switch.component';
 
 @NgModule({
     imports: [CommonModule, CountryRoutingModule , PageHeaderModule,
@@ -36,6 +37,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
         UiSwitchModule,
         ReactiveFormsModule],
     declarations: [CountryComponent,
+        SwitchComponent,
         AddDialogComponent,
         EditDialogComponent,
         DeleteDialogComponent],

@@ -1,48 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-12">
-        <h2 class="page-header">
-            Add Country
-        </h2>
-        <!-- <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active"><i class="fa {{icon}}"></i> {{heading}}</li>
-        </ol> -->
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10">
-      <div class="jumbotron">
-        <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-          <div class="row">
-            <div class="col-4">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" formControlName="name"
-                  [ngClass]="{'is-invalid':form.get('name').touched && form.get('firstName').invalid}" required />
-                <div class="invalid-feedback">
-                  <div>First Name is required</div>
+      <div class="card">
+        <div class="card-header" style="background-color: #4b8df8;color: white;">
+          <strong style="font-size: 18px;">Add Country</strong>
+        </div>
+        <div class="card-body">
+          <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+            <div class="row">
+              <div class="col-4">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" formControlName="name"
+                    [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}" required />
+                  <div class="invalid-feedback">
+                    <div>Name is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <label for="switch-2">Status</label>
+                  <div>
+                    <app-switch id="switch-2" formControlName="status"></app-switch>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-4" style="padding: 35px;">
-              <div class="form-group">
-                <!-- <div class="custom-control custom-switch">
-                  <input type="checkbox" formControlName="status" class="custom-control-input" required
-                    id="customSwitch1">
-                  <label class="custom-control-label" for="customSwitch1">Status</label>
-                </div> -->
-                <ui-switch [checked]="false" [(ngModel)]="enable"></ui-switch>
+            <br />       
+          </form>
+        </div>
+        <div class="card-footer">
+            <div class="form-group">
+                <button class="btn btn-primary mr-4" [disabled]="!form.valid" (click)="onSubmit()">Save</button>
+                <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
               </div>
-            </div>
-          </div>         
-        </form>
-        <div class="form-group">
-            <button class="btn btn-primary mr-4" [disabled]="!form.valid">Save</button>
-            <button class="btn btn-primary">Cancel</button>
-          </div>
+        </div>
       </div>
     </div>
   </div>
