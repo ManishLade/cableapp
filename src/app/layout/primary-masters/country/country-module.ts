@@ -19,6 +19,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 @NgModule({
     imports: [CommonModule, CountryRoutingModule , PageHeaderModule,
@@ -32,6 +33,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         MatTableModule,
         MatToolbarModule,
         MatPaginatorModule,
+        UiSwitchModule,
         ReactiveFormsModule],
     declarations: [CountryComponent,
         AddDialogComponent,

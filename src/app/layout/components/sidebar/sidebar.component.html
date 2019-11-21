@@ -5,49 +5,49 @@
     </div> 
     <div class="list-group">
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <i class="fa fa-fw fa-dashboard"></i>
             <span>{{ 'Client Dashboard' | translate }}</span>
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
-                <i class="fa fa-plus"></i>&nbsp;
+                <i class="fa fa-plus"></i>
                 <span>{{ 'Primary masters' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
                         <a [routerLink]="['/primary-masters', 'country']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>&nbsp;
+                            <i class="fa fa-monument"></i>
                             <span>{{ 'Country' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
+                            <i class="fa fa-monument"></i>
                             <span>{{ 'State' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
+                            <i class="fa fa-monument"></i>
                             <span>{{ 'Zone' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
+                            <i class="fa fa-monument"></i>
                             <span>{{ 'City' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
+                            <i class="fa fa-monument"></i>
                             <span>{{ 'Area' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
+                            <i class="fa fa-monument"></i>
                             <span>{{ 'User Group' | translate }}</span>
                         </a>
                     </li>
