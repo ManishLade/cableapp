@@ -8,8 +8,8 @@ export class Issue {
 }
 
 export class Country {
-  id: number;
-  name: string;
-  isApproved: boolean;  
-  CreatedDate: string;
+  Id: number;
+  Name: string;
+  Status: number;  
+  CreatedOn: string;
 }

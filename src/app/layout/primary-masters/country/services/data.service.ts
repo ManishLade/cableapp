@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Country} from '../models/issue';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { environment } from '@environments/environment';
 
 @Injectable()
 export class DataService {
@@ -23,7 +24,7 @@ export class DataService {
 
   /** CRUD METHODS */
   getAllCountries(): void {
-    this.httpClient.get<Country[]>(this.API_URL, { responseType: "json"}).subscribe(data => {
+    this.httpClient.get<Country[]>(`${environment.identityApiUrl}/api/Country`, { responseType: "json"}).subscribe(data => {
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {

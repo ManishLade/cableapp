@@ -25,16 +25,16 @@
         <!-- ID Column -->
         <ng-container matColumnDef="Name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.name}}</mat-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.Name}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Created Date">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
-            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.CreatedDate}}</mat-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.CreatedOn}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-            <mat-cell class="flex-stretch" *matCellDef="let row"> {{row.isApproved}}</mat-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row"> {{row.Status}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="Edit">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>

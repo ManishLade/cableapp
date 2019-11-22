@@ -53,25 +53,6 @@ export class CountryComponent implements OnInit {
     this.loadData();
   }
 
-    open(content) {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return  `with: ${reason}`;
-        }
-    }
-
-
   addCountry() {
       this.router.navigate(['/primary-masters/country/add'], { relativeTo: this.route });
   }
@@ -85,7 +66,7 @@ export class CountryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.name === this.name);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.Name === row.name);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
@@ -154,7 +135,7 @@ export class ExampleDataSource extends DataSource<Country> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((country: Country) => {
-          const searchStr = (country.name + country.id).toLowerCase();
+          const searchStr = (country.Name + country.Id).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -183,8 +164,8 @@ export class ExampleDataSource extends DataSource<Country> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
-        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+        case 'name': [propertyA, propertyB] = [a.Name, b.Name]; break;
+        case 'id': [propertyA, propertyB] = [a.Id, b.Id]; break;
         // case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
         // case 'title': [propertyA, propertyB] = [a.title, b.title]; break;
         // case 'state': [propertyA, propertyB] = [a.state, b.state]; break;
