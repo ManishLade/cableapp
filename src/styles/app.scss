@@ -4,6 +4,7 @@
 @import "utils";
 @import "rtl";
 @import "responsive";
+@import "../app/layout/primary-masters/country/country.component.scss";
 
 @media print {
     .breadcrumb {

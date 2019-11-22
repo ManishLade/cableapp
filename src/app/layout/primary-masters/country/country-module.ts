@@ -21,6 +21,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SwitchComponent } from '@app/shared/modules/switch/switch.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
     imports: [CommonModule, CountryRoutingModule , PageHeaderModule,
         HttpClientModule,
@@ -33,6 +34,7 @@ import { SwitchComponent } from '@app/shared/modules/switch/switch.component';
         MatTableModule,
         MatToolbarModule,
         MatPaginatorModule,
+        NgbModule,
         ReactiveFormsModule],
     declarations: [CountryComponent,
         SwitchComponent,

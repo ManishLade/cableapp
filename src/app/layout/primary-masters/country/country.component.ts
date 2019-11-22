@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -25,6 +25,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   ]
 })
 export class CountryComponent implements OnInit {
+
+  constructor(public httpClient: HttpClient,
+              public dialog: MatDialog,
+              public dataService: DataService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private modalService: NgbModal) {}
   displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
@@ -32,15 +39,11 @@ export class CountryComponent implements OnInit {
   id: number;
   name: string;
 
-  constructor(public httpClient: HttpClient,
-              public dialog: MatDialog,
-              public dataService: DataService,
-              private route: ActivatedRoute,
-              private router: Router) {}
-
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('filter',  {static: true}) filter: ElementRef;
+
+  closeResult: string;
 
   ngOnInit() {
     this.loadData();
@@ -50,17 +53,34 @@ export class CountryComponent implements OnInit {
     this.loadData();
   }
 
-  
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return  `with: ${reason}`;
+        }
+    }
+
 
   addCountry() {
       this.router.navigate(['/primary-masters/country/add'], { relativeTo: this.route });
   }
 
-  deleteItem(i: number, id: number, title: string, state: string, url: string) {
+  deleteItem(i: number, row: any) {
     this.index = i;
     this.name = 'id';
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: {id: id, title: title, state: state, url: url}
+      data: row
     });
 
     dialogRef.afterClosed().subscribe(result => {
