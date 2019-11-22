@@ -25,9 +25,7 @@ export class AddDialogComponent implements OnInit {
       return this.form.get('name')
     }
     ngOnInit() {
-      // this.form = this.formBuilder.group({
-      //   mySwitch: [true]
-      // }, );
+     
     }
   
     onSubmit(){
