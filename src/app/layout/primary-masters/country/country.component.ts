@@ -30,8 +30,7 @@ export class CountryComponent implements OnInit {
               public dialog: MatDialog,
               public dataService: DataService,
               private route: ActivatedRoute,
-              private router: Router,
-              private modalService: NgbModal) {}
+              private router: Router) {}
   displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;

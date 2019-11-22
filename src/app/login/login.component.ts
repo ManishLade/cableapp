@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
+        if (localStorage.getItem('jwt')) {
             this.router.navigate(['/']);
         }
     }

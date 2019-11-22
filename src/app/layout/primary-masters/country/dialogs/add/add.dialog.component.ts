@@ -18,6 +18,7 @@ export class AddDialogComponent implements OnInit {
    });
     constructor(private formBuilder: FormBuilder,
       private route: ActivatedRoute,
+      public dataService: DataService,
       private router: Router) { }
   
     get name(){
@@ -30,7 +31,21 @@ export class AddDialogComponent implements OnInit {
     }
   
     onSubmit(){
-      alert(JSON.stringify(this.form.value));
+      var country = new Country();
+      country.Name = this.form.get('name').value;
+      country.Id= 0;
+      country.Status= 1;
+      var self = this;
+      this.dataService.addCountry(country).subscribe(
+        data => {
+            console.log(data);
+            self.router.navigate(['/primary-masters/country'], { relativeTo: this.route });
+        },
+        error => {
+            // self.error = error;
+            // self.loading = false;
+        }
+    );;
     }
 
     onCancel() {

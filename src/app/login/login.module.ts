@@ -5,8 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from '@app/shared/interceptor/jwt.interceptor';
 
 @NgModule({
     imports: [
@@ -14,8 +12,7 @@ import { JwtInterceptor } from '@app/shared/interceptor/jwt.interceptor';
         TranslateModule,
         LoginRoutingModule,
         ReactiveFormsModule],
-    providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+    providers: [],
     declarations: [LoginComponent]
 })
 export class LoginModule {}

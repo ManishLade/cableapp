@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SwitchComponent } from '@app/shared/modules/switch/switch.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { httpInterceptorProviders } from '@app/shared/interceptor';
 @NgModule({
     imports: [CommonModule, CountryRoutingModule , PageHeaderModule,
         HttpClientModule,
@@ -47,7 +48,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         DeleteDialogComponent
       ],
     providers: [
-            DataService
+            DataService,httpInterceptorProviders
     ]
 })
 export class CountryModule {}

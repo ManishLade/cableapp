@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
+import { map } from 'rxjs/operators';
 import {Country} from '../models/issue';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { environment } from '@environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn:"root"
+})
 export class DataService {
   private readonly API_URL = 'app/api/country.data.json';
 
@@ -12,7 +15,8 @@ export class DataService {
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpClient) {}
+  constructor (private httpClient: HttpClient)//, private toasterService: ToasterService) {}
+  {}
 
   get data(): Country[] {
     return this.dataChange.value;
@@ -24,8 +28,8 @@ export class DataService {
 
   /** CRUD METHODS */
   getAllCountries(): void {
-    this.httpClient.get<Country[]>(`${environment.identityApiUrl}/api/Country`, { responseType: "json"}).subscribe(data => {
-        this.dataChange.next(data);
+    this.httpClient.get<Country[]>(`${environment.apiUrl}/api/Country`, { responseType: "json"}).subscribe(data => {
+        this.dataChange.next(data['Result']);
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
@@ -33,8 +37,10 @@ export class DataService {
   }
 
   // DEMO ONLY, you can find working methods below
-  addCountry (Country: Country): void {
-    this.dialogData = Country;
+  addCountry (country: Country) {
+    return this.httpClient.post(`${environment.apiUrl}/api/Country`, country).
+    pipe(map(res => { return res }));
+    
   }
 
   updateCountry (Country: Country): void {
