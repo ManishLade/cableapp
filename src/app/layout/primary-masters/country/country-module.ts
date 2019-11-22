@@ -23,6 +23,7 @@ import { SwitchComponent } from '@app/shared/modules/switch/switch.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { httpInterceptorProviders } from '@app/shared/interceptor';
+import { MatSnackBarModule } from '@angular/material';
 @NgModule({
     imports: [CommonModule, CountryRoutingModule , PageHeaderModule,
         HttpClientModule,
@@ -35,6 +36,7 @@ import { httpInterceptorProviders } from '@app/shared/interceptor';
         MatTableModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatSnackBarModule,
         NgbModule,
         ReactiveFormsModule],
     declarations: [CountryComponent,
@@ -48,7 +50,7 @@ import { httpInterceptorProviders } from '@app/shared/interceptor';
         DeleteDialogComponent
       ],
     providers: [
-            DataService,httpInterceptorProviders
+            DataService, httpInterceptorProviders
     ]
 })
 export class CountryModule {}

@@ -10,6 +10,7 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import {MatSnackBar} from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -30,7 +31,8 @@ export class CountryComponent implements OnInit {
               public dialog: MatDialog,
               public dataService: DataService,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router,
+              private snackBar: MatSnackBar) {}
   displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
@@ -59,18 +61,47 @@ export class CountryComponent implements OnInit {
   deleteItem(i: number, row: any) {
     this.index = i;
     this.name = 'id';
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: row
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.Name === row.name);
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        message: 'Are you sure want to delete?',
+        buttonText: {
+          ok: 'Save',
+          cancel: 'No'
+        }
+      }
+    });
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.Name === row.Name);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+        this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+          duration: 2000,
+        });
       }
     });
+    // const dialogRef = this.dialog.open(DeleteDialogComponent, {
+    //   data: row
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result === 1) {
+    //     const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.Name === row.name);
+    //     // for delete we use splice in order to remove single object from DataService
+    //     this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+    //     this.refreshTable();
+    //   }
+    // });
   }
 
 

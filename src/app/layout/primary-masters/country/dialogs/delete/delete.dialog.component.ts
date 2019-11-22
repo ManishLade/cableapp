@@ -1,23 +1,33 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/data.service';
-
+import { Component, Inject } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @Component({
-  selector: 'app-delete.dialog',
-  templateUrl: './delete.dialog.html',
-  styleUrls: ['./delete.dialog.scss']
+    selector: 'app-delete.dialog',
+    templateUrl: './delete.dialog.html',
+    styleUrls: ['./delete.dialog.scss']
 })
 export class DeleteDialogComponent {
+    message = 'Are you sure?';
+    confirmButtonText = 'Yes';
+    cancelButtonText = 'Cancel';
+    constructor(
+        @Inject(MAT_DIALOG_DATA) private data: any,
+        public dataService: DataService,
+        private dialogRef: MatDialogRef<DeleteDialogComponent>
+    ) {
+        if (data) {
+            this.message = data.message || this.message;
+            if (data.buttonText) {
+                this.confirmButtonText =
+                    data.buttonText.ok || this.confirmButtonText;
+                this.cancelButtonText =
+                    data.buttonText.cancel || this.cancelButtonText;
+            }
+        }
+    }
 
-  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  confirmDelete(): void {
-    this.dataService.deleteCountry(this.data.id);
-  }
+    onConfirmClick(): void {
+        this.dialogRef.close(true);
+    }
 }
