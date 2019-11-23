@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             password: ['', Validators.required],
             role: ['', [Validators.required]]
         });
-
+        this.f.role.setValue(this.roles[0]);
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || `/dashboard`;
     }
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
                     self.ngZone.run(() => {self.router.navigate([self.returnUrl], { relativeTo: this.route }); });
                 },
                 error => {
-                    self.error = error;
+                    self.error = error['error']['error_description'];
                     self.loading = false;
                 }
             );

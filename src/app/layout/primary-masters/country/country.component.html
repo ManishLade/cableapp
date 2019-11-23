@@ -39,7 +39,7 @@
         <ng-container matColumnDef="Edit">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
             <mat-cell *matCellDef="let row; let i=index;">
-                <button mat-icon-button class="cadetblue-icon" svgIcon="archive">
+                <button mat-icon-button class="cadetblue-icon" svgIcon="archive" (click)='onEdit(i, row)'>
                     <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
             </mat-cell>

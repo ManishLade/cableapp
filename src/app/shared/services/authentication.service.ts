@@ -4,15 +4,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { User } from 'src/app/_models/user';
+import * as jwt_decode from 'jwt-decode';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<any>;
+    public currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<User>(new User());
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -29,14 +30,19 @@ export class AuthenticationService {
             .pipe(map(res => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('jwt', res['access_token']);
-                this.currentUserSubject.next(res);
+                const decoded = jwt_decode(res['access_token']);
+                console.log(decoded);
+                const currentUser = {
+                    username: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+                    id: decoded['UserId']} as User;
+                this.currentUserSubject.next(currentUser);
                 return res;
             }));
     }
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('jwt');
         this.currentUserSubject.next(null);
     }
 }

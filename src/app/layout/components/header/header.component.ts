@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from '@app/_models/user';
+import { AuthenticationService } from '@app/shared/services/authentication.service';
 
 @Component({
     selector: 'app-header',
@@ -9,8 +11,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
+    currentUser: User;
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router,
+        private route: ActivatedRoute,
+        private authenticationService: AuthenticationService) {
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
         this.router.events.subscribe(val => {
             if (
@@ -43,7 +49,10 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('jwt');
+        this.router.navigate(['/login'], {
+            relativeTo: this.route
+        });
     }
 
     changeLang(language: string) {

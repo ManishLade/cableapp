@@ -1,38 +1,70 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/data.service';
-import {FormControl, Validators} from '@angular/forms';
-
+import { Component, OnInit } from '@angular/core';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Country } from '../../models/issue';
+import { DataService } from '../../services/data.service';
 @Component({
-  selector: 'app-baza.dialog',
-  templateUrl: './edit.dialog.html',
-  styleUrls: ['./edit.dialog.scss']
+    selector: 'app-baza.dialog',
+    templateUrl: './edit.dialog.html',
+    styleUrls: ['./edit.dialog.scss']
 })
-export class EditDialogComponent {
+export class EditDialogComponent implements OnInit {
+    form = new FormGroup({
+        name: new FormControl('', Validators.required),
+        status: new FormControl(false)
+    });
 
-  constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { }
+    country: Country;
 
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        public dataService: DataService,
+        private router: Router
+    ) {
+        const navigation = this.router.getCurrentNavigation();
+        this.country = navigation.extras.state as Country;
+    }
 
-  getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
-  }
+    get name() {
+        return this.form.get('name');
+    }
 
-  submit() {
-    // emppty stuff
-  }
+     // convenience getter for easy access to form fields
+    get f() {
+      return this.form.controls;
+    }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+    ngOnInit() {
+      this.f.name.setValue(this.country.Name);
+      this.f.status.setValue(this.country.Status);
+    }
 
-  stopEdit(): void {
-    this.dataService.updateCountry(this.data);
-  }
+    onEdit() {
+        this.country.Name = this.f.name.value;
+        const self = this;
+        this.dataService.updateCountry(this.country).subscribe(
+            data => {
+                console.log(data);
+                self.router.navigate(['/primary-masters/country'], {
+                    relativeTo: this.route
+                });
+            },
+            error => {
+                // self.error = error;
+                // self.loading = false;
+            }
+        );
+    }
+
+    onCancel() {
+        this.router.navigate(['/primary-masters/country'], {
+            relativeTo: this.route
+        });
+    }
 }
