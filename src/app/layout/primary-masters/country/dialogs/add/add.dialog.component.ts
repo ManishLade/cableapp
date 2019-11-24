@@ -12,7 +12,7 @@ import { DataService } from '../../services/data.service';
 export class AddDialogComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
-        status: new FormControl(false)
+        status: new FormControl(true)
     });
     constructor(
         private formBuilder: FormBuilder,
@@ -30,7 +30,7 @@ export class AddDialogComponent implements OnInit {
         const country = new Country();
         country.Name = this.form.get('name').value;
         country.Id = 0;
-        country.Status = 1;
+        country.Status = this.form.get('status').value ? 1 : 0;
         const self = this;
         this.dataService.addCountry(country).subscribe(
             data => {

@@ -24,6 +24,7 @@ import { SwitchComponent } from '@app/shared/modules/switch/switch.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { httpInterceptorProviders } from '@app/shared/interceptor';
 import { MatSnackBarModule } from '@angular/material';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 @NgModule({
     imports: [CommonModule, CountryRoutingModule , PageHeaderModule,
         HttpClientModule,
@@ -38,6 +39,7 @@ import { MatSnackBarModule } from '@angular/material';
         MatPaginatorModule,
         MatSnackBarModule,
         NgbModule,
+        Ng4LoadingSpinnerModule.forRoot(),
         ReactiveFormsModule],
     declarations: [CountryComponent,
         SwitchComponent,

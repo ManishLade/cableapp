@@ -1,61 +1,89 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {Country} from '../models/issue';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { Country } from '../models/issue';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
-  private readonly API_URL = 'app/api/country.data.json';
+    private readonly API_URL = 'app/api/country.data.json';
 
-  dataChange: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
-  // Temporarily stores data from dialogs
-  dialogData: any;
+    dataChange: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
+    // Temporarily stores data from dialogs
+    dialogData: any;
 
-  constructor (private httpClient: HttpClient) {}
+    constructor(
+        private httpClient: HttpClient,
+        private spinnerService: Ng4LoadingSpinnerService
+    ) {}
 
-  get data(): Country[] {
-    return this.dataChange.value;
-  }
+    get data(): Country[] {
+        return this.dataChange.value;
+    }
 
-  getDialogData() {
-    return this.dialogData;
-  }
+    getDialogData() {
+        return this.dialogData;
+    }
 
-  /** CRUD METHODS */
-  getAllCountries(): void {
-    this.httpClient.get<Country[]>(`${environment.apiUrl}/api/Country`, { responseType: 'json'}).subscribe(data => {
-        this.dataChange.next(data['Result']);
-      },
-      (error: HttpErrorResponse) => {
-      console.log (error.name + ' ' + error.message);
-      });
-  }
+    /** CRUD METHODS */
+    getAllCountries(): void {
+        this.spinnerService.show();
+        this.httpClient
+            .get<Country[]>(`${environment.apiUrl}/api/Country`, {
+                responseType: 'json'
+            })
+            .subscribe(
+                data => {
+                    this.spinnerService.hide();
+                    this.dataChange.next(data['Result']);
+                },
+                (error: HttpErrorResponse) => {
+                    console.log(error.name + ' ' + error.message);
+                }
+            );
+    }
 
-  // DEMO ONLY, you can find working methods below
-  addCountry (country: Country) {
-    return this.httpClient.post(`${environment.apiUrl}/api/Country`, country).
-    pipe(map(res => res));
+    // DEMO ONLY, you can find working methods below
+    addCountry(country: Country) {
+        this.spinnerService.show();
+        return this.httpClient
+            .post(`${environment.apiUrl}/api/Country`, country)
+            .pipe(
+                map(res => {
+                    this.spinnerService.hide();
+                    return res;
+                })
+            );
+    }
 
-  }
+    deleteCountry(countryId: number) {
+        this.spinnerService.show();
+        return this.httpClient
+            .delete(`${environment.apiUrl}/api/Country/${countryId}`)
+            .pipe(
+                map(res => {
+                    this.spinnerService.hide();
+                    return res;
+                })
+            );
+    }
 
-  deleteCountry (countryId: number) {
-    return this.httpClient.delete(`${environment.apiUrl}/api/Country/${countryId}`).
-    pipe(map(res => res));
-
-  }
-
-  updateCountry (country: Country) {
-    return this.httpClient.put(`${environment.apiUrl}/api/Country`, country).
-    pipe(map(res => res));
-  }
-
+    updateCountry(country: Country) {
+        this.spinnerService.show();
+        return this.httpClient
+            .put(`${environment.apiUrl}/api/Country`, country)
+            .pipe(
+                map(res => {
+                    this.spinnerService.hide();
+                    return res;
+                })
+            );
+    }
 }
-
-
 
 /* REAL LIFE CRUD Methods I've used in my projects. ToasterService uses Material Toasts for displaying messages:
 
@@ -94,7 +122,3 @@ export class DataService {
     );
   }
 */
-
-
-
-

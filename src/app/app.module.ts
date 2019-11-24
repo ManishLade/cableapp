@@ -10,6 +10,7 @@ import { LanguageTranslationModule } from './shared/modules/language-translation
 import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
 import { CoreModule } from './shared/interceptor/core.module';
 import { httpInterceptorProviders } from './shared/interceptor';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { httpInterceptorProviders } from './shared/interceptor';
         HttpClientModule,
         LanguageTranslationModule,
         AppRoutingModule,
-        CoreModule       
+        CoreModule,
+        Ng4LoadingSpinnerModule.forRoot(),
     ],
     declarations: [AppComponent],
     providers: [AuthGuard, httpInterceptorProviders],

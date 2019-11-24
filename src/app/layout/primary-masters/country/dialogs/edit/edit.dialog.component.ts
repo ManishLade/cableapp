@@ -16,7 +16,7 @@ import { DataService } from '../../services/data.service';
 export class EditDialogComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
-        status: new FormControl(false)
+        status: new FormControl(true)
     });
 
     country: Country;
@@ -42,7 +42,7 @@ export class EditDialogComponent implements OnInit {
 
     ngOnInit() {
       this.f.name.setValue(this.country.Name);
-      this.f.status.setValue(this.country.Status);
+      this.f.status.setValue(this.country.Status === 1 ? true : false);
     }
 
     onEdit() {

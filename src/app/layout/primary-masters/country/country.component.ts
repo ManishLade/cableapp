@@ -13,6 +13,7 @@ import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component'
 import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
 import { Country } from './models/issue';
 import { DataService } from './services/data.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-country',
     templateUrl: './country.component.html',
@@ -31,7 +32,8 @@ export class CountryComponent implements OnInit {
         public dataService: DataService,
         private route: ActivatedRoute,
         private router: Router,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private spinnerService: Ng4LoadingSpinnerService
     ) {}
     displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
     exampleDatabase: DataService | null;
@@ -116,7 +118,7 @@ export class CountryComponent implements OnInit {
     }
 
     public loadData() {
-        this.exampleDatabase = new DataService(this.httpClient);
+        this.exampleDatabase = new DataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
