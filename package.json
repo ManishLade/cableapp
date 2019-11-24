@@ -36,7 +36,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "loadsh": "0.0.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.13",
     "mdbootstrap": "^4.8.10",
     "ng2-charts": "2.3.0",
     "ng4-loading-spinner": "^1.2.3",
