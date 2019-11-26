@@ -57,7 +57,7 @@ export class RoleComponent implements OnInit {
     }
 
     addRole() {
-        this.router.navigate(['/primary-masters/role/add'], {
+        this.router.navigate(['/role/add'], {
             relativeTo: this.route
         });
     }
@@ -107,7 +107,7 @@ export class RoleComponent implements OnInit {
 
     onEdit(index: number, role: Role) {
       const navigationExtras: NavigationExtras = { state: role, relativeTo: this.route } as NavigationExtras;
-      this.router.navigate(['/primary-masters/role/edit'], navigationExtras);
+      this.router.navigate(['/role/edit'], navigationExtras);
     }
 
     private refreshTable() {

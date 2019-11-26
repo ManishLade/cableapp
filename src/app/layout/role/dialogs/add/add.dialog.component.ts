@@ -35,7 +35,7 @@ export class AddDialogComponent implements OnInit {
         this.dataService.addRole(role).subscribe(
             data => {
                 console.log(data);
-                self.router.navigate(['/primary-masters/role'], {
+                self.router.navigate(['/role'], {
                     relativeTo: this.route
                 });
             },
@@ -45,7 +45,7 @@ export class AddDialogComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/primary-masters/role'], {
+        this.router.navigate(['/role'], {
             relativeTo: this.route
         });
     }

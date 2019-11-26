@@ -41,9 +41,10 @@
                         Approved
                     </button>
                 </div>
-                <div *ngIf='row.Status != 1'><button type="button" mat-raised-button color="warn" class="no-hover-effect">
-                        Blocked
-                    </button>
+                <div class='block-btn' *ngIf='row.Status != 1'><button type="button" mat-flat-button color="warn"
+                    class="no-hover-effect">
+                    Blocked
+                </button>
                 </div> </mat-cell>
         </ng-container>
         <ng-container matColumnDef="Edit">

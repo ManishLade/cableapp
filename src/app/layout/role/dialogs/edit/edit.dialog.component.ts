@@ -51,7 +51,7 @@ export class EditDialogComponent implements OnInit {
         this.dataService.updateRole(this.role).subscribe(
             data => {
                 console.log(data);
-                self.router.navigate(['/primary-masters/role'], {
+                self.router.navigate(['/role'], {
                     relativeTo: this.route
                 });
             },
@@ -63,7 +63,7 @@ export class EditDialogComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/primary-masters/role'], {
+        this.router.navigate(['/role'], {
             relativeTo: this.route
         });
     }

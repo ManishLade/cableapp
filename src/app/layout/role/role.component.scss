@@ -18,7 +18,7 @@ $theme: mat-light-theme($primary, $accent);
   @include angular-material-theme($dark-theme);
 }
 
-.spinner-centre{
+::ng-deep .spinner{
   top: 50% !important;
   left: 50% !important;
 }
@@ -115,6 +115,12 @@ body {
 
 ::ng-deep .mat-flat-button{
   background: #35aa47 !important;
+}
+
+
+::ng-deep .block-btn .mat-flat-button {
+  background: darkslategrey !important;
+  width: 111%;
 }
 
 button:focus
