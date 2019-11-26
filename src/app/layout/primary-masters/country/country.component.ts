@@ -57,7 +57,7 @@ export class CountryComponent implements OnInit {
     }
 
     addCountry() {
-        this.router.navigate(['/primary-masters/country/add'], {
+        this.router.navigate(['/country/add'], {
             relativeTo: this.route
         });
     }
@@ -107,7 +107,7 @@ export class CountryComponent implements OnInit {
 
     onEdit(index: number, country: Country) {
       const navigationExtras: NavigationExtras = { state: country, relativeTo: this.route } as NavigationExtras;
-      this.router.navigate(['/primary-masters/country/edit'], navigationExtras);
+      this.router.navigate(['/country/edit'], navigationExtras);
     }
 
     private refreshTable() {

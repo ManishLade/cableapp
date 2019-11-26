@@ -17,16 +17,19 @@ const routes: Routes = [
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
             { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
             { path: 'role', loadChildren: () => import('./role/role.module').then(m => m.RoleModule) },
-            { path: 'kits', loadChildren: () => import('./manage-agents/manage-agents.module').then(m => m.ManageAgentsModule) },
-            { path: 'manage-agents', loadChildren: () => import('./kits/kits.module').then(m => m.KitsModule) },
+            { path: 'manage-agents', loadChildren: () => import('./manage-agents/manage-agents.module').then(m => m.ManageAgentsModule) },
+            { path: 'kits', loadChildren: () => import('./kits/kits.module').then(m => m.KitsModule) },
             { path: 'prepaid-subscriber', loadChildren: () => import('./prepaid-subscriber/prepaid-subscriber.module')
                                                                             .then(m => m.PrepaidSubscriberModule) },
             { path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule) },
+            { path: 'country', loadChildren: () => import('./primary-masters/country/country-module').then(m => m.CountryModule) },
+            { path: 'state', loadChildren: () => import('./primary-masters/state/state.module').then(m => m.StateModule) },
+            { path: 'city', loadChildren: () => import('./primary-masters/city/city.module').then(m => m.CityModule) },
+            { path: 'area', loadChildren: () => import('./primary-masters/area/area.module').then(m => m.AreaModule) },
+            { path: 'zone', loadChildren: () => import('./primary-masters/zone/zone.module').then(m => m.ZoneModule) },
             { path: 'franchisee', loadChildren: () => import('./franchisee/franchisee.module').then(m => m.FranchiseeModule) },
             { path: 'item-category', loadChildren: () => import('./item-category/item-category.module')
                                                                             .then(m => m.ItemCategoryModule) },
-            { path: 'primary-masters', loadChildren:
-            () => import('./primary-masters/primary-master.module').then(m => m.PrimaryMasterModule)},
             { path: 'other-masters', loadChildren:
             () => import('./other-masters/other-masters.module').then(m => m.OtherMastersModule)},
         ]
