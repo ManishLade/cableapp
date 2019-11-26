@@ -103,38 +103,43 @@
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a class="list-group-item" [routerLink]="['/primary-masters', 'country']"
+                        <a class="list-group-item" [routerLink]="['/other-masters', 'supplier']"
                          [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>
                             <span>{{ 'Supplier' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a class="list-group-item" href="javascript:void(0)">
+                        <a class="list-group-item" [routerLink]="['/other-masters', 'channel-category']"
+                        [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>
                             <span>{{ 'Channel Category' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a class="list-group-item" href="javascript:void(0)">
+                        <a class="list-group-item" [routerLink]="['/other-masters', 'cas-provider-setting']"
+                        [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>
                             <span>{{ 'CAS Provider setting' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a class="list-group-item" href="javascript:void(0)">
+                        <a class="list-group-item" [routerLink]="['/other-masters', 'charges']"
+                        [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>
                             <span>{{ 'Charges' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a class="list-group-item" href="javascript:void(0)">
+                        <a class="list-group-item" [routerLink]="['/other-masters', 'complain-category']"
+                        [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>
                             <span>{{ 'Complain category' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a class="list-group-item" href="javascript:void(0)">
+                        <a class="list-group-item" [routerLink]="['/other-masters', 'document-type']"
+                        [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-monument"></i>
                             <span>{{ 'Document type' | translate }}</span>
                         </a>

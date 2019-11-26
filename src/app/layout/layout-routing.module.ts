@@ -17,8 +17,18 @@ const routes: Routes = [
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
             { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
             { path: 'role', loadChildren: () => import('./role/role.module').then(m => m.RoleModule) },
+            { path: 'kits', loadChildren: () => import('./manage-agents/manage-agents.module').then(m => m.ManageAgentsModule) },
+            { path: 'manage-agents', loadChildren: () => import('./kits/kits.module').then(m => m.KitsModule) },
+            { path: 'prepaid-subscriber', loadChildren: () => import('./prepaid-subscriber/prepaid-subscriber.module')
+                                                                            .then(m => m.PrepaidSubscriberModule) },
+            { path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule) },
+            { path: 'franchisee', loadChildren: () => import('./franchisee/franchisee.module').then(m => m.FranchiseeModule) },
+            { path: 'item-category', loadChildren: () => import('./item-category/item-category.module')
+                                                                            .then(m => m.ItemCategoryModule) },
             { path: 'primary-masters', loadChildren:
             () => import('./primary-masters/primary-master.module').then(m => m.PrimaryMasterModule)},
+            { path: 'other-masters', loadChildren:
+            () => import('./other-masters/other-masters.module').then(m => m.OtherMastersModule)},
         ]
     }
 ];

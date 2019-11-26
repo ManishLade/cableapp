@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreparedSubscriberComponent } from './prepared-subscriber.component';
+import { ManageAgentsComponent } from './manage-agents.component';
 
-describe('PreparedSubscriberComponent', () => {
-  let component: PreparedSubscriberComponent;
-  let fixture: ComponentFixture<PreparedSubscriberComponent>;
+describe('ManageAgentsComponent', () => {
+  let component: ManageAgentsComponent;
+  let fixture: ComponentFixture<ManageAgentsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreparedSubscriberComponent ]
+      declarations: [ ManageAgentsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreparedSubscriberComponent);
+    fixture = TestBed.createComponent(ManageAgentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

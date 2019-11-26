@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-item-category',
-  template: `
-    <p>
-      item-category works!
-    </p>
-  `,
+  templateUrl: './item-category.component.html',
   styleUrls: ['./item-category.component.scss']
 })
 export class ItemCategoryComponent implements OnInit {

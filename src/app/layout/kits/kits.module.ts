@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { KitsRoutingModule } from './kits-routing.module';
 import { KitsComponent } from './kits.component';
 
-
 @NgModule({
   declarations: [KitsComponent],
   imports: [
