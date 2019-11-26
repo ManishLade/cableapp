@@ -13,6 +13,7 @@ const routes: Routes = [
             { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
             { path: 'items', loadChildren: () => import('./items/items.module').then(m => m.ItemsModule) },
             { path: 'role', loadChildren: () => import('./role/role.module').then(m => m.RoleModule) },
+            { path: 'usergroup', loadChildren: () => import('./primary-masters/usergroup/usergroup.module').then(m => m.UsergroupModule) },
             { path: 'channel', loadChildren: () => import('./manage-package/channel/channel.module').then(m => m.ChannelModule) },
             { path: 'package', loadChildren: () => import('./manage-package/package/package.module').then(m => m.PackageModule) },
             { path: 'manage-agents', loadChildren: () => import('./manage-agents/manage-agents.module').then(m => m.ManageAgentsModule) },
