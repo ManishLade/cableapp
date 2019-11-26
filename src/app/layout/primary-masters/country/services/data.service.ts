@@ -32,6 +32,7 @@ export class DataService {
     /** CRUD METHODS */
     getAllCountries(): void {
         this.spinnerService.show();
+
         this.httpClient
             .get<Country[]>(`${environment.apiUrl}/api/Country`, {
                 responseType: 'json'
@@ -42,6 +43,7 @@ export class DataService {
                     this.dataChange.next(data['Result']);
                 },
                 (error: HttpErrorResponse) => {
+                    this.spinnerService.hide();
                     console.log(error.name + ' ' + error.message);
                 }
             );

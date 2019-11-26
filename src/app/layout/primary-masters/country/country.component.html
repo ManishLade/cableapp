@@ -1,5 +1,6 @@
-
-<ng4-loading-spinner class="spinner-centre"> </ng4-loading-spinner>
+<div class="spinner-centre">
+    <ng4-loading-spinner> </ng4-loading-spinner>
+</div>
 <mat-toolbar class="pt-1">
     <div class="country-caption">
         <i class="fa fa-cogs" style="padding-right: 5px;margin-left: -6px;" aria-hidden="true"></i>
@@ -37,14 +38,17 @@
         <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
             <mat-cell class="flex-stretch" *matCellDef="let row">
-                <div *ngIf='row.Status == 1'><button type="button" mat-flat-button color="accent" class="no-hover-effect">
+                <div *ngIf='row.Status == 1'><button type="button" mat-flat-button color="accent"
+                        class="no-hover-effect">
                         Approved
                     </button>
                 </div>
-                <div *ngIf='row.Status != 1'><button type="button" mat-raised-button color="warn" class="no-hover-effect">
+                <div class='block-btn' *ngIf='row.Status != 1'><button type="button" mat-flat-button color="warn"
+                        class="no-hover-effect">
                         Blocked
                     </button>
-                </div> </mat-cell>
+                </div>
+            </mat-cell>
         </ng-container>
         <ng-container matColumnDef="Edit">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
