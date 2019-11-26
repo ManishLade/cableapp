@@ -3,13 +3,13 @@
         <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;
     </div>
     <div class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/dashboard']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>
             <span>{{ 'Client Dashboard' | translate }}</span>
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandPrimaryMasters('primary-masters')">
-                <i class="{{addExpandCssClassPM}}"></i>
+                <i class="{{addExpandCssClassPM}}"></i>&nbsp;
                 <span>{{ 'Primary masters' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showPrimarMasters === 'primary-masters'">
@@ -95,7 +95,7 @@
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandOtherMasters('other-masters')">
-                <i class="{{addExpandCssClassOM}}"></i>
+                <i class="{{addExpandCssClassOM}}"></i>&nbsp;
                 <span>{{ 'Other Masters' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showOtherMasters === 'other-masters'">
@@ -141,7 +141,7 @@
         </div>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
-                <i class="{{addExpandCssClassMP}}"></i>
+                <i class="{{addExpandCssClassMP}}"></i>&nbsp;
                 <span>{{ 'Manage package' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
