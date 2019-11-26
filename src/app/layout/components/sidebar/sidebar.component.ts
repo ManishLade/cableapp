@@ -10,10 +10,16 @@ import { TranslateService } from '@ngx-translate/core';
 export class SidebarComponent implements OnInit {
     isActive: boolean;
     collapsed: boolean;
-    showMenu: string;
+    showPrimarMasters: string;
+    showOtherMasters = '';
+    showManagePackage = '';
+    showMenu = '';
     pushRightClass: string;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
+    addExpandCssClassPM = 'fa fa-plus';
+    addExpandCssClassOM = 'fa fa-plus';
+    addExpandCssClassMP = 'fa fa-plus';
 
     constructor(private translate: TranslateService, public router: Router) {
         this.router.events.subscribe(val => {
@@ -30,7 +36,7 @@ export class SidebarComponent implements OnInit {
     ngOnInit() {
         this.isActive = false;
         this.collapsed = false;
-        this.showMenu = '';
+        this.showPrimarMasters = '';
         this.pushRightClass = 'push-right';
     }
 
@@ -39,11 +45,33 @@ export class SidebarComponent implements OnInit {
         this.isActive = !this.isActive;
     }
 
-    addExpandClass(element: any) {
-        if (element === this.showMenu) {
-            this.showMenu = '0';
+    addExpandPrimaryMasters(element: any) {
+        if (element === this.showPrimarMasters) {
+            this.showPrimarMasters = '0';
+            this.addExpandCssClassPM = 'fa fa-plus';
         } else {
-            this.showMenu = element;
+            this.showPrimarMasters = element;
+            this.addExpandCssClassPM = 'fa fa-minus';
+        }
+    }
+
+    addExpandManagePackage(element: any) {
+        if (element === this.showManagePackage) {
+            this.showManagePackage = '0';
+            this.addExpandCssClassMP = 'fa fa-plus';
+        } else {
+            this.showManagePackage = element;
+            this.addExpandCssClassMP = 'fa fa-minus';
+        }
+    }
+
+    addExpandOtherMasters(element: any) {
+        if (element === this.showOtherMasters) {
+            this.showOtherMasters = '0';
+            this.addExpandCssClassOM = 'fa fa-plus';
+        } else {
+            this.showOtherMasters = element;
+            this.addExpandCssClassOM = 'fa fa-minus';
         }
     }
 
