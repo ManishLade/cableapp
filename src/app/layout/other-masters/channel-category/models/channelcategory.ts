@@ -1,6 +1,6 @@
 
 
-export class Role {
+export class ChannelCategory {
   Id: number;
   Name: string;
   Status: number;

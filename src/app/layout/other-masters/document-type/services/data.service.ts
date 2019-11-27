@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Role } from '../models/role';
+import { DocumentType } from '../models/documenttype';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -10,9 +10,9 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     providedIn: 'root'
 })
 export class DataService {
-    private readonly API_URL = 'app/api/role.data.json';
+    private readonly API_URL = 'app/api/documentType.data.json';
 
-    dataChange: BehaviorSubject<Role[]> = new BehaviorSubject<Role[]>([]);
+    dataChange: BehaviorSubject<DocumentType[]> = new BehaviorSubject<DocumentType[]>([]);
     // Temporarily stores data from dialogs
     dialogData: any;
 
@@ -21,7 +21,7 @@ export class DataService {
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
 
-    get data(): Role[] {
+    get data(): DocumentType[] {
         return this.dataChange.value;
     }
 
@@ -33,7 +33,7 @@ export class DataService {
     getAllCountries(): void {
         this.spinnerService.show();
         this.httpClient
-            .get<Role[]>(`${environment.apiUrl}/api/Role`, {
+            .get<DocumentType[]>(`${environment.apiUrl}/api/DocumentType`, {
                 responseType: 'json'
             })
             .subscribe(
@@ -48,10 +48,10 @@ export class DataService {
     }
 
     // DEMO ONLY, you can find working methods below
-    addRole(role: Role) {
+    addDocumentType(documentType: DocumentType) {
         this.spinnerService.show();
         return this.httpClient
-            .post(`${environment.apiUrl}/api/Role`, role)
+            .post(`${environment.apiUrl}/api/DocumentType`, documentType)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -60,10 +60,10 @@ export class DataService {
             );
     }
 
-    deleteRole(roleId: number) {
+    deleteDocumentType(documentTypeId: number) {
         this.spinnerService.show();
         return this.httpClient
-            .delete(`${environment.apiUrl}/api/Role/${roleId}`)
+            .delete(`${environment.apiUrl}/api/DocumentType/${documentTypeId}`)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -72,10 +72,10 @@ export class DataService {
             );
     }
 
-    updateRole(role: Role) {
+    updateDocumentType(documentType: DocumentType) {
         this.spinnerService.show();
         return this.httpClient
-            .put(`${environment.apiUrl}/api/Role`, role)
+            .put(`${environment.apiUrl}/api/DocumentType`, documentType)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();

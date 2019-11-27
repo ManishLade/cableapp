@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from '../../models/role';
+import { DocumentType } from '../../models/documentType';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { DataService } from '../../services/data.service';
     templateUrl: './add.dialog.html',
     styleUrls: ['./add.dialog.scss']
 })
-export class AddDialogComponent implements OnInit {
+export class AddDocumentTypeComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true)
@@ -27,15 +27,15 @@ export class AddDialogComponent implements OnInit {
     ngOnInit() {}
 
     onSubmit() {
-        const role = new Role();
-        role.Name = this.form.get('name').value;
-        role.Id = 0;
-        role.Status = this.form.get('status').value ? 1 : 0;
+        const documentType = new DocumentType();
+        documentType.Name = this.form.get('name').value;
+        documentType.Id = 0;
+        documentType.Status = this.form.get('status').value ? 1 : 0;
         const self = this;
-        this.dataService.addRole(role).subscribe(
+        this.dataService.addDocumentType(documentType).subscribe(
             data => {
                 console.log(data);
-                self.router.navigate(['/role'], {
+                self.router.navigate(['/document-type'], {
                     relativeTo: this.route
                 });
             },
@@ -45,7 +45,7 @@ export class AddDialogComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/role'], {
+        this.router.navigate(['/document-type'], {
             relativeTo: this.route
         });
     }

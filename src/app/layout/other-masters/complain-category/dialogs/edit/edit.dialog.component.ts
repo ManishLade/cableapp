@@ -6,20 +6,20 @@ import {
     Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from '../../models/role';
+import { ComplainCategory } from '../../models/complaincategory';
 import { DataService } from '../../services/data.service';
 @Component({
     selector: 'app-baza.dialog',
     templateUrl: './edit.dialog.html',
     styleUrls: ['./edit.dialog.scss']
 })
-export class EditDialogComponent implements OnInit {
+export class EditComplainCategoryComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true)
     });
 
-    role: Role;
+    complainCategory: ComplainCategory;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,7 +28,7 @@ export class EditDialogComponent implements OnInit {
         private router: Router
     ) {
         const navigation = this.router.getCurrentNavigation();
-        this.role = navigation.extras.state as Role;
+        this.complainCategory = navigation.extras.state as ComplainCategory;
     }
 
     get name() {
@@ -41,17 +41,17 @@ export class EditDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.f.name.setValue(this.role.Name);
-      this.f.status.setValue(this.role.Status === 1 ? true : false);
+      this.f.name.setValue(this.complainCategory.Name);
+      this.f.status.setValue(this.complainCategory.Status === 1 ? true : false);
     }
 
     onEdit() {
-        this.role.Name = this.f.name.value;
+        this.complainCategory.Name = this.f.name.value;
         const self = this;
-        this.dataService.updateRole(this.role).subscribe(
+        this.dataService.updateComplainCategory(this.complainCategory).subscribe(
             data => {
                 console.log(data);
-                self.router.navigate(['/role'], {
+                self.router.navigate(['/complain-category'], {
                     relativeTo: this.route
                 });
             },
@@ -63,7 +63,7 @@ export class EditDialogComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/role'], {
+        this.router.navigate(['/complainCategory'], {
             relativeTo: this.route
         });
     }

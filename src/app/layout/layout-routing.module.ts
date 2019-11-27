@@ -9,7 +9,6 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
-            { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
             { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
             { path: 'items', loadChildren: () => import('./items/items.module').then(m => m.ItemsModule) },
             { path: 'role', loadChildren: () => import('./role/role.module').then(m => m.RoleModule) },

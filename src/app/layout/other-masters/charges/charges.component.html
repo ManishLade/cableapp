@@ -1,3 +1,82 @@
-<p>
-  charges works!
-</p>
+
+<ng4-loading-spinner class="spinner-centre"> </ng4-loading-spinner>
+<mat-toolbar class="pt-1">
+    <div class="charges-caption">
+        <i class="fa fa-cogs" style="padding-right: 5px;margin-left: -6px;" aria-hidden="true"></i>
+        <span>Manage Charges</span>
+    </div>
+    <div class="ml-auto pb-1">
+        <button type="button" mat-flat-button color="accent" class="no-hover-effect" (click)="addCharges()">
+            <mat-icon>add</mat-icon>Add
+        </button>
+    </div>
+</mat-toolbar>
+
+<div class="Container mat-elevation-z8">
+
+    <div style="background-color: ghostwhite;" class="form">
+        <mat-form-field floatPlaceholder="never" color="blue">
+            Search <input matInput #filter placeholder="">
+        </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.Name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Created Date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.CreatedOn | date: 'dd/MMM/yyyy'}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row">
+                <div *ngIf='row.Status == 1'><button type="button" mat-flat-button color="accent" class="no-hover-effect">
+                        Approved
+                    </button>
+                </div>
+                <div class='block-btn' *ngIf='row.Status != 1'><button type="button" mat-flat-button color="warn"
+                    class="no-hover-effect">
+                    Blocked
+                </button>
+                </div> </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Edit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index;">
+                <button mat-icon-button class="cadetblue-icon" svgIcon="archive" (click)='onEdit(i, row)'>
+                    <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Delete">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index;">
+                <button mat-icon-button class="gray-icon" svgIcon="archive" (click)="deleteItem(i, row)">
+                    <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+
+
+        <!-- actions -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+
+    <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+        No results
+    </div>
+
+    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>
