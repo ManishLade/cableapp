@@ -1,6 +1,6 @@
 
 
-export class Charges {
+export class Charge {
   Id: number;
   Name: string;
   Status: number;

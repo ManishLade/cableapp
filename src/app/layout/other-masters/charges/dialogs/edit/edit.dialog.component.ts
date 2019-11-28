@@ -6,7 +6,7 @@ import {
     Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Charges } from '../../models/charges';
+import { Charge } from '../../models/charges';
 import { DataService } from '../../services/data.service';
 @Component({
     selector: 'app-baza.dialog',
@@ -19,7 +19,7 @@ export class EditChargesComponent implements OnInit {
         status: new FormControl(true)
     });
 
-    charges: Charges;
+    charges: Charge;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,7 +28,7 @@ export class EditChargesComponent implements OnInit {
         private router: Router
     ) {
         const navigation = this.router.getCurrentNavigation();
-        this.charges = navigation.extras.state as Charges;
+        this.charges = navigation.extras.state as Charge;
     }
 
     get name() {
@@ -48,7 +48,7 @@ export class EditChargesComponent implements OnInit {
     onEdit() {
         this.charges.Name = this.f.name.value;
         const self = this;
-        this.dataService.updateCharges(this.charges).subscribe(
+        this.dataService.updateCharge(this.charges).subscribe(
             data => {
                 console.log(data);
                 self.router.navigate(['/charges'], {

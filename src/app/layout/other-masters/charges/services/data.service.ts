@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Charges } from '../models/charges';
+import { Charge } from '../models/charges';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -10,9 +10,9 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     providedIn: 'root'
 })
 export class DataService {
-    private readonly API_URL = 'app/api/charges.data.json';
+    private readonly API_URL = 'app/api/Charge.data.json';
 
-    dataChange: BehaviorSubject<Charges[]> = new BehaviorSubject<Charges[]>([]);
+    dataChange: BehaviorSubject<Charge[]> = new BehaviorSubject<Charge[]>([]);
     // Temporarily stores data from dialogs
     dialogData: any;
 
@@ -21,7 +21,7 @@ export class DataService {
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
 
-    get data(): Charges[] {
+    get data(): Charge[] {
         return this.dataChange.value;
     }
 
@@ -30,10 +30,10 @@ export class DataService {
     }
 
     /** CRUD METHODS */
-    getAllCountries(): void {
+    getAllCharges(): void {
         this.spinnerService.show();
         this.httpClient
-            .get<Charges[]>(`${environment.apiUrl}/api/Charges`, {
+            .get<Charge[]>(`${environment.apiUrl}/api/Charge`, {
                 responseType: 'json'
             })
             .subscribe(
@@ -48,10 +48,10 @@ export class DataService {
     }
 
     // DEMO ONLY, you can find working methods below
-    addCharges(charges: Charges) {
+    addCharge(charges: Charge) {
         this.spinnerService.show();
         return this.httpClient
-            .post(`${environment.apiUrl}/api/Charges`, charges)
+            .post(`${environment.apiUrl}/api/Charge`, charges)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -60,10 +60,10 @@ export class DataService {
             );
     }
 
-    deleteCharges(chargesId: number) {
+    deleteCharge(chargesId: number) {
         this.spinnerService.show();
         return this.httpClient
-            .delete(`${environment.apiUrl}/api/Charges/${chargesId}`)
+            .delete(`${environment.apiUrl}/api/Charge/${chargesId}`)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -72,10 +72,10 @@ export class DataService {
             );
     }
 
-    updateCharges(charges: Charges) {
+    updateCharge(charges: Charge) {
         this.spinnerService.show();
         return this.httpClient
-            .put(`${environment.apiUrl}/api/Charges`, charges)
+            .put(`${environment.apiUrl}/api/Charge`, charges)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();

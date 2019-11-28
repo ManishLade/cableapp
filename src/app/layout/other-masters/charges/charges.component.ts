@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 import { AddChargesComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditChargesComponent } from './dialogs/edit/edit.dialog.component';
-import { Charges } from './models/charges';
+import { Charge } from './models/charges';
 import { DataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
@@ -96,7 +96,7 @@ export class ChargesComponent implements OnInit {
         });
     }
 
-    onEdit(index: number, charges: Charges) {
+    onEdit(index: number, charges: Charge) {
         const navigationExtras: NavigationExtras = { state: charges, relativeTo: this.route } as NavigationExtras;
         this.router.navigate(['/charges/edit'], navigationExtras);
     }
@@ -123,7 +123,7 @@ export class ChargesComponent implements OnInit {
     }
 }
 
-export class ExampleDataSource extends DataSource<Charges> {
+export class ExampleDataSource extends DataSource<Charge> {
     _filterChange = new BehaviorSubject('');
 
     get filter(): string {
@@ -134,8 +134,8 @@ export class ExampleDataSource extends DataSource<Charges> {
         this._filterChange.next(filter);
     }
 
-    filteredData: Charges[] = [];
-    renderedData: Charges[] = [];
+    filteredData: Charge[] = [];
+    renderedData: Charge[] = [];
 
     constructor(public _exampleDatabase: DataService, public _paginator: MatPaginator, public _sort: MatSort) {
         super();
@@ -144,16 +144,16 @@ export class ExampleDataSource extends DataSource<Charges> {
     }
 
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<Charges[]> {
+    connect(): Observable<Charge[]> {
         // Listen for any changes in the base data, sorting, filtering, or pagination
         const displayDataChanges = [this._exampleDatabase.dataChange, this._sort.sortChange, this._filterChange, this._paginator.page];
 
-        this._exampleDatabase.getAllCountries();
+        this._exampleDatabase.getAllCharges();
 
         return merge(...displayDataChanges).pipe(
             map(() => {
                 // Filter data
-                this.filteredData = this._exampleDatabase.data.slice().filter((charges: Charges) => {
+                this.filteredData = this._exampleDatabase.data.slice().filter((charges: Charge) => {
                     const searchStr = (charges.Name + charges.Id).toLowerCase();
                     return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
                 });
@@ -172,7 +172,7 @@ export class ExampleDataSource extends DataSource<Charges> {
     disconnect() {}
 
     /** Returns a sorted copy of the database data. */
-    sortData(data: Charges[]): Charges[] {
+    sortData(data: Charge[]): Charge[] {
         if (!this._sort.active || this._sort.direction === '') {
             return data;
         }
