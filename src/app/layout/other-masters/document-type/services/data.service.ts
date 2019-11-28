@@ -30,7 +30,7 @@ export class DataService {
     }
 
     /** CRUD METHODS */
-    getAllCountries(): void {
+    getAllDocumentTypes(): void {
         this.spinnerService.show();
         this.httpClient
             .get<DocumentType[]>(`${environment.apiUrl}/api/DocumentType`, {

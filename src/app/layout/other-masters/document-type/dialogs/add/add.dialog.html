@@ -9,12 +9,12 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Type</label>
                                 <input type="text" class="form-control" formControlName="name"
                                     [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}"
                                     required />
                                 <div class="invalid-feedback">
-                                    <div>Name is required</div>
+                                    <div>Type is required</div>
                                 </div>
                             </div>
                         </div>

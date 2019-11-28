@@ -2,7 +2,7 @@
 
 export class DocumentType {
   Id: number;
-  Name: string;
+  Type: string;
   Status: number;
   CreatedOn: string;
 }

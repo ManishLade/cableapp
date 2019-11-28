@@ -32,12 +32,12 @@ export class EditDocumentTypeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.f.name.setValue(this.documentType.Name);
+        this.f.name.setValue(this.documentType.Type);
         this.f.status.setValue(this.documentType.Status === 1 ? true : false);
     }
 
     onEdit() {
-        this.documentType.Name = this.f.name.value;
+        this.documentType.Type = this.f.name.value;
         const self = this;
         this.dataService.updateDocumentType(this.documentType).subscribe(
             data => {

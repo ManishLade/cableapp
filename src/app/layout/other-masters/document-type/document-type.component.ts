@@ -31,7 +31,7 @@ export class DocumentTypeComponent implements OnInit {
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
+    displayedColumns = ['Type', 'Created Date', 'Status', 'Edit', 'Delete'];
     exampleDatabase: DataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
@@ -77,7 +77,7 @@ export class DocumentTypeComponent implements OnInit {
             if (confirmed) {
                 self.dataService.deleteDocumentType(row.Id).subscribe(res => {
                     if (res['Result']) {
-                        const foundIndex = self.exampleDatabase.dataChange.value.findIndex(x => x.Name === row.Name);
+                        const foundIndex = self.exampleDatabase.dataChange.value.findIndex(x => x.Type === row.Type);
                         // for delete we use splice in order to remove single object from DataService
                         self.exampleDatabase.dataChange.value.splice(foundIndex, 1);
                         self.refreshTable();
@@ -148,13 +148,13 @@ export class ExampleDataSource extends DataSource<DocumentType> {
         // Listen for any changes in the base data, sorting, filtering, or pagination
         const displayDataChanges = [this._exampleDatabase.dataChange, this._sort.sortChange, this._filterChange, this._paginator.page];
 
-        this._exampleDatabase.getAllCountries();
+        this._exampleDatabase.getAllDocumentTypes();
 
         return merge(...displayDataChanges).pipe(
             map(() => {
                 // Filter data
                 this.filteredData = this._exampleDatabase.data.slice().filter((documentType: DocumentType) => {
-                    const searchStr = (documentType.Name + documentType.Id).toLowerCase();
+                    const searchStr = (documentType.Type + documentType.Id).toLowerCase();
                     return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
                 });
 
@@ -183,7 +183,7 @@ export class ExampleDataSource extends DataSource<DocumentType> {
 
             switch (this._sort.active) {
                 case 'name':
-                    [propertyA, propertyB] = [a.Name, b.Name];
+                    [propertyA, propertyB] = [a.Type, b.Type];
                     break;
                 case 'id':
                     [propertyA, propertyB] = [a.Id, b.Id];

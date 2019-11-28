@@ -28,7 +28,7 @@ export class AddDocumentTypeComponent implements OnInit {
 
     onSubmit() {
         const documentType = new DocumentType();
-        documentType.Name = this.form.get('name').value;
+        documentType.Type = this.form.get('name').value;
         documentType.Id = 0;
         documentType.Status = this.form.get('status').value ? 1 : 0;
         const self = this;

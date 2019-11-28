@@ -75,7 +75,7 @@ export class ChargesComponent implements OnInit {
         const self = this;
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
             if (confirmed) {
-                self.dataService.deleteCharges(row.Id).subscribe(res => {
+                self.dataService.deleteCharge(row.Id).subscribe(res => {
                     if (res['Result']) {
                         const foundIndex = self.exampleDatabase.dataChange.value.findIndex(x => x.Name === row.Name);
                         // for delete we use splice in order to remove single object from DataService
