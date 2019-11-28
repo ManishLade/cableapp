@@ -33,7 +33,7 @@ export class DataService {
     getAllCountries(): void {
         this.spinnerService.show();
         this.httpClient
-            .get<ManageAgents[]>(`${environment.apiUrl}/api/ManageAgents`, {
+            .get<ManageAgents[]>(`${environment.apiUrl}/api/Agents`, {
                 responseType: 'json'
             })
             .subscribe(
@@ -51,7 +51,7 @@ export class DataService {
     addManageAgents(manageAgents: ManageAgents) {
         this.spinnerService.show();
         return this.httpClient
-            .post(`${environment.apiUrl}/api/ManageAgents`, manageAgents)
+            .post(`${environment.apiUrl}/api/Agents`, manageAgents)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -63,7 +63,7 @@ export class DataService {
     deleteManageAgents(manageAgentsId: number) {
         this.spinnerService.show();
         return this.httpClient
-            .delete(`${environment.apiUrl}/api/ManageAgents/${manageAgentsId}`)
+            .delete(`${environment.apiUrl}/api/Agents/${manageAgentsId}`)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -75,7 +75,7 @@ export class DataService {
     updateManageAgents(manageAgents: ManageAgents) {
         this.spinnerService.show();
         return this.httpClient
-            .put(`${environment.apiUrl}/api/ManageAgents`, manageAgents)
+            .put(`${environment.apiUrl}/api/Agents`, manageAgents)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
