@@ -1,0 +1,216 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-deep-purple, 50);
+$accent:  mat-palette($mat-purple, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+.m2app-dark {
+  $dark-primary: mat-palette($mat-deep-purple, 700, 500, 900);
+  $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-deep-orange);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  color: #852b99;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.button {
+  color: #1d943b;
+}
+
+
+
+.searchSection {
+  width: 25%;
+  padding: 2em 0 1em 0;
+}
+/*  This can also be used.
+.tableSection {
+  height: 100%;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+*/
+.tableSection {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.matTable {
+    width: 40em;
+    overflow: scroll;
+}
+
+.mat-header-cell{
+  text-align: left;
+  background-color: whitesmoke;
+}
+
+.mat-cell {
+  text-align: left;
+}
+
+.mat-checkbox {
+    text-align: center;
+}
+
+.formError {
+  color: red;
+  font-size: smaller;
+}
+
+.floatRight{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-top: 6px;
+    float: right;
+}
+
+::ng-deep .flex-stretch {
+    display: -ms-flexbox !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    -webkit-align-self: stretch !important;
+    -ms-flex-item-align: stretch !important;
+    align-self: stretch !important;
+    /* align-items center so that cell content is vertically centered */
+    -webkit-align-items: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+::ng-deep .mat-toolbar{
+    background: #852b99 !important;
+    color: ghostwhite !important;
+    height: 42px !important;
+    line-height: 20px !important;
+}
+
+::ng-deep .mat-flat-button{
+  background: #35aa47 !important;
+}
+
+::ng-deep .block-btn .mat-flat-button {
+  background: darkslategrey !important;
+  width: 111%;
+}
+
+::ng-deep .spinner{
+  top: 50% !important;
+  left: 50% !important;
+}
+
+
+button:focus
+{
+    outline:none;
+}
+
+.cadetblue-icon{
+  color: cadetblue;
+}
+.gray-icon{
+  color:dimgrey
+}
+.no-hover-effect.mat-button.mat-primary .mat-button-focus-overlay,
+.no-hover-effect.mat-button.mat-accent .mat-button-focus-overlay,
+.no-hover-effect.mat-button.mat-warn .mat-button-focus-overlay
+{
+  background-color: transparent;
+}
+.mat-button, .mat-flat-button {
+  border-radius: 0px !important;
+
+  .mat-button-ripple {
+    border-radius: inherit;
+    z-index: 1;
+  }
+}
+.zone-caption {
+  float: left;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 7px;
+}
+
+/* Structure */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Filter */
+.form {
+  min-height: 56px;
+  max-height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid transparent;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-top: 8px;
+}
+
+/* Mat table */
+.no-results {
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+// .mat-cell:nth-child(1),
+// .mat-header-cell:nth-child(1){
+//   flex: 0 0 6%;
+// }
+
+// .mat-cell:nth-child(2),
+// .mat-header-cell:nth-child(2){
+//   flex: 0 0 30%;
+// }
+
+// .mat-cell:nth-child(3),
+// .mat-header-cell:nth-child(3){
+//   flex: 0 0 6%;
+// }
+
+// .mat-cell:nth-child(7),
+// .mat-header-cell:nth-child(7){
+//   flex: 0 0 7%;
+// }

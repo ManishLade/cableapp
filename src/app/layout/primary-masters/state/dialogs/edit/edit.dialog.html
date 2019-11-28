@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xl-12">
+      <div class="card">
+          <div class="card-header" style="background-color: #4b8df8;color: white;">
+              <strong style="font-size: 18px;">Edit State</strong>
+          </div>
+          <div class="card-body">
+              <form name="form" [formGroup]="form" (ngSubmit)="form.valid">
+                  <div class="row">
+                      <div class="col-4">
+                          <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" class="form-control" formControlName="name"
+                                  [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}"
+                                  required />
+                              <div class="invalid-feedback">
+                                  <div>Name is required</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-4">
+                          <div class="form-group">
+                              <label for="switch-2">Status</label>
+                              <div>
+                                  <app-switch id="switch-2" formControlName="status"></app-switch>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <br />
+              </form>
+          </div>
+          <div class="card-footer">
+              <div class="form-group">
+                  <button class="btn btn-primary mr-4" [disabled]="!form.valid" (click)="onEdit()">Save</button>
+                  <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
