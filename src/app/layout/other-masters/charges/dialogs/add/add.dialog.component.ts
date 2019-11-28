@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Charges } from '../../models/charges';
+import { Charge } from '../../models/charges';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -27,12 +27,12 @@ export class AddChargesComponent implements OnInit {
     ngOnInit() {}
 
     onSubmit() {
-        const charges = new Charges();
+        const charges = new Charge();
         charges.Name = this.form.get('name').value;
         charges.Id = 0;
         charges.Status = this.form.get('status').value ? 1 : 0;
         const self = this;
-        this.dataService.addCharges(charges).subscribe(
+        this.dataService.addCharge(charges).subscribe(
             data => {
                 console.log(data);
                 self.router.navigate(['/charges'], {
