@@ -9,7 +9,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Injectable({
     providedIn: 'root'
 })
-export class DataService {
+export class CountryDataService {
     private readonly API_URL = 'app/api/country.data.json';
 
     dataChange: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);

@@ -12,13 +12,13 @@ import { AddZoneComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditZoneComponent } from './dialogs/edit/edit.dialog.component';
 import { Zone } from './models/zone';
-import { DataService } from './services/data.service';
+import { ZoneDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-zone',
     templateUrl: './zone.component.html',
     styleUrls: ['./zone.component.scss'],
-    providers: [DataService],
+    providers: [ZoneDataService],
     entryComponents: [
         AddZoneComponent,
         EditZoneComponent,
@@ -29,14 +29,14 @@ export class ZoneComponent implements OnInit {
     constructor(
         public httpClient: HttpClient,
         public dialog: MatDialog,
-        public dataService: DataService,
+        public dataService: ZoneDataService,
         private route: ActivatedRoute,
         private router: Router,
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
-    exampleDatabase: DataService | null;
+    displayedColumns = ['State', 'Name', 'Created Date', 'Status', 'Edit', 'Delete'];
+    exampleDatabase: ZoneDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
     id: number;
@@ -118,7 +118,7 @@ export class ZoneComponent implements OnInit {
     }
 
     public loadData() {
-        this.exampleDatabase = new DataService(this.httpClient, this.spinnerService);
+        this.exampleDatabase = new ZoneDataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
@@ -151,7 +151,7 @@ export class ExampleDataSource extends DataSource<Zone> {
     renderedData: Zone[] = [];
 
     constructor(
-        public _exampleDatabase: DataService,
+        public _exampleDatabase: ZoneDataService,
         public _paginator: MatPaginator,
         public _sort: MatSort
     ) {
@@ -170,7 +170,7 @@ export class ExampleDataSource extends DataSource<Zone> {
             this._paginator.page
         ];
 
-        this._exampleDatabase.getAllCountries();
+        this._exampleDatabase.getAllZones();
 
         return merge(...displayDataChanges).pipe(
             map(() => {

@@ -12,13 +12,13 @@ import { AddDialogComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
 import { Country } from './models/issue';
-import { DataService } from './services/data.service';
+import { CountryDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-country',
     templateUrl: './country.component.html',
     styleUrls: ['./country.component.scss'],
-    providers: [DataService],
+    providers: [CountryDataService],
     entryComponents: [
         AddDialogComponent,
         EditDialogComponent,
@@ -29,14 +29,14 @@ export class CountryComponent implements OnInit {
     constructor(
         public httpClient: HttpClient,
         public dialog: MatDialog,
-        public dataService: DataService,
+        public dataService: CountryDataService,
         private route: ActivatedRoute,
         private router: Router,
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
     displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
-    exampleDatabase: DataService | null;
+    exampleDatabase: CountryDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
     id: number;
@@ -118,7 +118,7 @@ export class CountryComponent implements OnInit {
     }
 
     public loadData() {
-        this.exampleDatabase = new DataService(this.httpClient, this.spinnerService);
+        this.exampleDatabase = new CountryDataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
@@ -151,7 +151,7 @@ export class ExampleDataSource extends DataSource<Country> {
     renderedData: Country[] = [];
 
     constructor(
-        public _exampleDatabase: DataService,
+        public _exampleDatabase: CountryDataService,
         public _paginator: MatPaginator,
         public _sort: MatSort
     ) {

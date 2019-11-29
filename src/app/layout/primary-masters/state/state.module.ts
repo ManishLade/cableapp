@@ -7,7 +7,7 @@ import { StateRoutingModule } from './state-routing.module';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { AddStateComponent } from './dialogs/add/add.dialog.component';
 import { EditStateComponent } from './dialogs/edit/edit.dialog.component';
-import { DataService } from './services/data.service';
+import { StateDataService } from './services/data.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -53,7 +53,7 @@ import { SwitchModule } from '@app/shared/modules/switch/switch.module';
         DeleteDialogComponent
       ],
     providers: [
-            DataService, httpInterceptorProviders
+            StateDataService, httpInterceptorProviders
     ]
 })
 export class StateModule {}

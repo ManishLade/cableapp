@@ -20,6 +20,23 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
+                                <label for="coutry">Country</label>
+                                <select class="custom-select" formControlName="city">
+                                    <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
+                                </select>
+                                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                    <div *ngIf="f.city.errors.required">Please select city</div>
+                                </div>
+                                <!-- error block -->
+                                <div class="invalid-feedback" *ngIf="submitted && f.city.errors?.required">
+                                    <sup>*</sup>Please select city
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
                                 <label for="switch-2">Status</label>
                                 <div>
                                     <app-switch id="switch-2" formControlName="status"></app-switch>

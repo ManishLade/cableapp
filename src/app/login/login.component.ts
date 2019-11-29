@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl = `\dashboard`;
+    returnUrl = `/dashboard`;
     error = '';
     // role Names
     roles: any = ['User', 'Owner', 'Subscriber'];

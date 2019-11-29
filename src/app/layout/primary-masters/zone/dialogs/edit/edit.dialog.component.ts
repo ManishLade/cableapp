@@ -7,7 +7,8 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Zone } from '../../models/zone';
-import { DataService } from '../../services/data.service';
+import { ZoneDataService } from '../../services/data.service';
+import { StateDataService } from '@app/layout/primary-masters/state/services/data.service';
 @Component({
     selector: 'app-baza.dialog',
     templateUrl: './edit.dialog.html',
@@ -16,17 +17,26 @@ import { DataService } from '../../services/data.service';
 export class EditZoneComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
-        status: new FormControl(true)
+        status: new FormControl(true),
+        state: new FormControl('', Validators.required)
     });
 
     zone: Zone;
+    states: { name: string; id: number; }[];
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        public dataService: DataService,
+        public zoneDataService: ZoneDataService,
+        private stateDataService: StateDataService,
         private router: Router
     ) {
+        this.stateDataService.getAllStates();
+        this.stateDataService.dataChange.subscribe(res => {
+            this.states = res.map(x => {
+               return { name: x.Name, id: x.Id };
+            });
+        });
         const navigation = this.router.getCurrentNavigation();
         this.zone = navigation.extras.state as Zone;
     }
@@ -47,8 +57,10 @@ export class EditZoneComponent implements OnInit {
 
     onEdit() {
         this.zone.Name = this.f.name.value;
+        this.zone.Status = this.form.get('status').value ? 1 : 0;
+        this.zone.StateId = this.form.get('state').value;
         const self = this;
-        this.dataService.updateZone(this.zone).subscribe(
+        this.zoneDataService.updateZone(this.zone).subscribe(
             data => {
                 console.log(data);
                 self.router.navigate(['/zone'], {

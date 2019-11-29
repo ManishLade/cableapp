@@ -7,7 +7,7 @@ import { ZoneRoutingModule } from './zone-routing.module';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { AddZoneComponent } from './dialogs/add/add.dialog.component';
 import { EditZoneComponent } from './dialogs/edit/edit.dialog.component';
-import { DataService } from './services/data.service';
+import { ZoneDataService } from './services/data.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -53,7 +53,7 @@ import { SwitchModule } from '@app/shared/modules/switch/switch.module';
         DeleteDialogComponent
       ],
     providers: [
-            DataService, httpInterceptorProviders
+            ZoneDataService, httpInterceptorProviders
     ]
 })
 export class ZoneModule {}

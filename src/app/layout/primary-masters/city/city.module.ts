@@ -7,7 +7,7 @@ import { CityRoutingModule } from './city-routing.module';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { AddCityComponent } from './dialogs/add/add.dialog.component';
 import { EditCityComponent } from './dialogs/edit/edit.dialog.component';
-import { DataService } from './services/data.service';
+import { CityDataService } from './services/data.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -53,7 +53,7 @@ import { SwitchModule } from '@app/shared/modules/switch/switch.module';
         DeleteDialogComponent
       ],
     providers: [
-            DataService, httpInterceptorProviders
+            CityDataService, httpInterceptorProviders
     ]
 })
 export class CityModule {}

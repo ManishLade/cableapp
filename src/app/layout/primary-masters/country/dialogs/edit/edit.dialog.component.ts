@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Country } from '../../models/issue';
-import { DataService } from '../../services/data.service';
+import { CountryDataService } from '../../services/data.service';
 @Component({
     selector: 'app-baza.dialog',
     templateUrl: './edit.dialog.html',
@@ -24,7 +24,7 @@ export class EditDialogComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        public dataService: DataService,
+        public dataService: CountryDataService,
         private router: Router
     ) {
         const navigation = this.router.getCurrentNavigation();

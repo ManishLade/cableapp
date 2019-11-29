@@ -7,7 +7,7 @@ import { AreaRoutingModule } from './area-routing.module';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { AddAreaComponent } from './dialogs/add/add.dialog.component';
 import { EditAreaComponent } from './dialogs/edit/edit.dialog.component';
-import { DataService } from './services/data.service';
+import { AreaDataService } from './services/data.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -53,7 +53,7 @@ import { SwitchModule } from '@app/shared/modules/switch/switch.module';
         DeleteDialogComponent
       ],
     providers: [
-            DataService, httpInterceptorProviders
+            AreaDataService, httpInterceptorProviders
     ]
 })
 export class AreaModule {}

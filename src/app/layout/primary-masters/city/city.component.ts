@@ -12,13 +12,13 @@ import { AddCityComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditCityComponent } from './dialogs/edit/edit.dialog.component';
 import { City } from './models/city';
-import { DataService } from './services/data.service';
+import { CityDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-city',
     templateUrl: './city.component.html',
     styleUrls: ['./city.component.scss'],
-    providers: [DataService],
+    providers: [CityDataService],
     entryComponents: [
         AddCityComponent,
         EditCityComponent,
@@ -29,14 +29,14 @@ export class CityComponent implements OnInit {
     constructor(
         public httpClient: HttpClient,
         public dialog: MatDialog,
-        public dataService: DataService,
+        public dataService: CityDataService,
         private route: ActivatedRoute,
         private router: Router,
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
-    exampleDatabase: DataService | null;
+    displayedColumns = ['Name', 'Zone', 'Created Date', 'Status', 'Edit', 'Delete'];
+    exampleDatabase: CityDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
     id: number;
@@ -118,7 +118,7 @@ export class CityComponent implements OnInit {
     }
 
     public loadData() {
-        this.exampleDatabase = new DataService(this.httpClient, this.spinnerService);
+        this.exampleDatabase = new CityDataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
@@ -151,7 +151,7 @@ export class ExampleDataSource extends DataSource<City> {
     renderedData: City[] = [];
 
     constructor(
-        public _exampleDatabase: DataService,
+        public _exampleDatabase: CityDataService,
         public _paginator: MatPaginator,
         public _sort: MatSort
     ) {
@@ -170,7 +170,7 @@ export class ExampleDataSource extends DataSource<City> {
             this._paginator.page
         ];
 
-        this._exampleDatabase.getAllCountries();
+        this._exampleDatabase.getAllCities();
 
         return merge(...displayDataChanges).pipe(
             map(() => {

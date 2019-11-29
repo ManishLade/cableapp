@@ -6,27 +6,44 @@
           </div>
           <div class="card-body">
               <form name="form" [formGroup]="form" (ngSubmit)="form.valid">
-                  <div class="row">
-                      <div class="col-4">
-                          <div class="form-group">
-                              <label for="name">Name</label>
-                              <input type="text" class="form-control" formControlName="name"
-                                  [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}"
-                                  required />
-                              <div class="invalid-feedback">
-                                  <div>Name is required</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-4">
-                          <div class="form-group">
-                              <label for="switch-2">Status</label>
-                              <div>
-                                  <app-switch id="switch-2" formControlName="status"></app-switch>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                    <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" formControlName="name"
+                                        [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="coutry">Country</label>
+                                    <select class="custom-select" formControlName="country">
+                                        <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                        <div *ngIf="f.country.errors.required">Please select country</div>
+                                    </div>
+                                    <!-- error block -->
+                                    <div class="invalid-feedback" *ngIf="submitted && f.country.errors?.required">
+                                        <sup>*</sup>Please select country
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="switch-2">Status</label>
+                                    <div>
+                                        <app-switch id="switch-2" formControlName="status"></app-switch>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                   <br />
               </form>
           </div>

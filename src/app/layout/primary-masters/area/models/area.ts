@@ -1,7 +1,10 @@
+import { City } from '../../city/models/city';
+
 export class Area {
   Id: number;
   Name: string;
   Status: number;
-  StateId: number;
+  CityId: number;
   CreatedOn: string;
+  City: City;
 }

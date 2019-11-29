@@ -31,6 +31,11 @@
             <mat-cell class="flex-stretch" *matCellDef="let row">{{row.Name}}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="City">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+            <mat-cell class="flex-stretch" *matCellDef="let row">{{row.City.Name}}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="Created Date">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
             <mat-cell class="flex-stretch" *matCellDef="let row">{{row.CreatedOn | date: 'dd/MMM/yyyy'}}</mat-cell>

@@ -9,7 +9,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Injectable({
     providedIn: 'root'
 })
-export class DataService {
+export class StateDataService {
     private readonly API_URL = 'app/api/state.data.json';
 
     dataChange: BehaviorSubject<State[]> = new BehaviorSubject<State[]>([]);
@@ -30,7 +30,7 @@ export class DataService {
     }
 
     /** CRUD METHODS */
-    getAllCountries(): void {
+    getAllStates(): void {
         this.spinnerService.show();
 
         this.httpClient
@@ -39,6 +39,7 @@ export class DataService {
             })
             .subscribe(
                 data => {
+                    console.log(data['Result']);
                     this.spinnerService.hide();
                     this.dataChange.next(data['Result']);
                 },

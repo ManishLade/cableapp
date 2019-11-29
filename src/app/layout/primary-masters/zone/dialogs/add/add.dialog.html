@@ -20,6 +20,24 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
+                                <label for="coutry">State</label>
+                                <select class="custom-select" formControlName="state">
+                                    <option *ngFor="let state of states" [ngValue]="state.id">{{state.name}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                    <div *ngIf="f.state.errors.required">Please select state</div>
+                                </div>
+                                <!-- error block -->
+                                <div class="invalid-feedback" *ngIf="submitted && f.country.errors?.required">
+                                    <sup>*</sup>Please select country
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
                                 <label for="switch-2">Status</label>
                                 <div>
                                     <app-switch id="switch-2" formControlName="status"></app-switch>

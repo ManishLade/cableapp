@@ -19,14 +19,32 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <div class="form-group">
-                                <label for="switch-2">Status</label>
-                                <div>
-                                    <app-switch id="switch-2" formControlName="status"></app-switch>
+                                <div class="form-group">
+                                    <label for="zone">Zone</label>
+                                    <select class="custom-select" formControlName="zone">
+                                        <option *ngFor="let zone of zones" [ngValue]="zone.id">{{zone.name}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="submitted && f.zone.errors" class="invalid-feedback">
+                                        <div *ngIf="f.zone.errors.required">Please select zone</div>
+                                    </div>
+                                    <!-- error block -->
+                                    <div class="invalid-feedback" *ngIf="submitted && f.zone.errors?.required">
+                                        <sup>*</sup>Please select zone
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="switch-2">Status</label>
+                                    <div>
+                                        <app-switch id="switch-2" formControlName="status"></app-switch>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <br />
                 </form>
             </div>

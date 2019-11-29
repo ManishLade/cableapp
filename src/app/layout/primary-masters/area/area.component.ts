@@ -12,13 +12,13 @@ import { AddAreaComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditAreaComponent } from './dialogs/edit/edit.dialog.component';
 import { Area } from './models/area';
-import { DataService } from './services/data.service';
+import { AreaDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-area',
     templateUrl: './area.component.html',
     styleUrls: ['./area.component.scss'],
-    providers: [DataService],
+    providers: [AreaDataService],
     entryComponents: [
         AddAreaComponent,
         EditAreaComponent,
@@ -29,14 +29,14 @@ export class AreaComponent implements OnInit {
     constructor(
         public httpClient: HttpClient,
         public dialog: MatDialog,
-        public dataService: DataService,
+        public dataService: AreaDataService,
         private route: ActivatedRoute,
         private router: Router,
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
-    exampleDatabase: DataService | null;
+    displayedColumns = ['Name', 'City', 'Created Date', 'Status', 'Edit', 'Delete'];
+    exampleDatabase: AreaDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
     id: number;
@@ -118,7 +118,7 @@ export class AreaComponent implements OnInit {
     }
 
     public loadData() {
-        this.exampleDatabase = new DataService(this.httpClient, this.spinnerService);
+        this.exampleDatabase = new AreaDataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
@@ -151,7 +151,7 @@ export class ExampleDataSource extends DataSource<Area> {
     renderedData: Area[] = [];
 
     constructor(
-        public _exampleDatabase: DataService,
+        public _exampleDatabase: AreaDataService,
         public _paginator: MatPaginator,
         public _sort: MatSort
     ) {

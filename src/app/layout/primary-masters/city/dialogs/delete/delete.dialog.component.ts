@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { CityDataService } from '../../services/data.service';
 
 @Component({
     selector: 'app-delete.dialog',
@@ -13,7 +13,7 @@ export class DeleteDialogComponent {
     cancelButtonText = 'Cancel';
     constructor(
         @Inject(MAT_DIALOG_DATA) private data: any,
-        public dataService: DataService,
+        public dataService: CityDataService,
         private dialogRef: MatDialogRef<DeleteDialogComponent>
     ) {
         if (data) {
