@@ -18,7 +18,7 @@ export class AddStateComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true),
-        country: new FormControl(null, Validators.required)
+        country: new FormControl(0, Validators.required)
        });
     constructor(
         private formBuilder: FormBuilder,

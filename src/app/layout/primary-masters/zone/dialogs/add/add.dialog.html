@@ -27,10 +27,10 @@
                                     </option>
                                 </select>
                                 <div *ngIf="form.get('state').errors" class="invalid-feedback">
-                                    <div *ngIf="form.get('state').errors.required">Please select state</div>
+                                    <div *ngIf="form.get('state').errors?.required">Please select state</div>
                                 </div>
                                 <!-- error block -->
-                                <div class="invalid-feedback" *ngIf="form.get('country').errors?.required">
+                                <div class="invalid-feedback" *ngIf="form.get('state').errors?.required">
                                     <sup>*</sup>Please select state
                                 </div>
                             </div>

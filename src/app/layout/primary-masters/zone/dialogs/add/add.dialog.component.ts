@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Zone } from '../../models/zone';
 import { ZoneDataService } from '../../services/data.service';
 import { StateDataService } from '@app/layout/primary-masters/state/services/data.service';
@@ -16,7 +16,7 @@ export class AddZoneComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true),
-        state: new FormControl('', Validators.required)
+        state: new FormControl(0, Validators.required)
     });
 
     constructor(
@@ -27,10 +27,15 @@ export class AddZoneComponent implements OnInit {
         private router: Router
     ) {
         this.stateDataService.getAllStates();
-        this.stateDataService.dataChange.subscribe(res => {
-            this.states = res.map(x => {
-               return { name: x.Name, id: x.Id };
-            });
+        router.events.subscribe((val) => {
+            // see also
+            if (val instanceof NavigationEnd) {
+                this.stateDataService.dataChange.subscribe(res => {
+                    this.states = res.map(x => {
+                       return { name: x.Name, id: x.Id };
+                    });
+                });
+            }
         });
     }
 

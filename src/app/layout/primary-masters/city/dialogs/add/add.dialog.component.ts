@@ -14,7 +14,7 @@ export class AddCityComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true),
-        zone: new FormControl('', Validators.required)
+        zone: new FormControl(0, Validators.required)
     });
     zones: { name: string; id: number; }[];
     constructor(

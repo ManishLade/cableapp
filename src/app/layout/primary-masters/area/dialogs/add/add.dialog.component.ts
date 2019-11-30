@@ -14,7 +14,7 @@ export class AddAreaComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true),
-        city: new FormControl('', Validators.required),
+        city: new FormControl(0, Validators.required),
     });
     cities: { name: string; id: number; }[];
     constructor(
