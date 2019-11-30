@@ -52,7 +52,7 @@ export class EditStateComponent implements OnInit {
 
     ngOnInit() {
       this.f.name.setValue(this.state.Name);
-      this.f.country.setValue(this.state.CountryId);
+      this.form.get('country').setValue(this.state.CountryId);
       this.f.status.setValue(this.state.Status === 1 ? true : false);
     }
 

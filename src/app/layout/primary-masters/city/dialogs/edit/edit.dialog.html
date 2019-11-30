@@ -25,11 +25,11 @@
                                     <option *ngFor="let zone of zones" [ngValue]="zone.id">{{zone.name}}
                                     </option>
                                 </select>
-                                <div *ngIf="submitted && f.zone.errors" class="invalid-feedback">
-                                    <div *ngIf="f.zone.errors.required">Please select zone</div>
+                                <div *ngIf="form.get('zone').errors" class="invalid-feedback">
+                                    <div *ngIf="form.get('zone').errors.required">Please select zone</div>
                                 </div>
                                 <!-- error block -->
-                                <div class="invalid-feedback" *ngIf="submitted && f.zone.errors?.required">
+                                <div class="invalid-feedback" *ngIf="form.get('zone').errors?.required">
                                     <sup>*</sup>Please select zone
                                 </div>
                             </div>

@@ -106,7 +106,7 @@ export class AreaComponent implements OnInit {
     }
 
     onEdit(index: number, area: Area) {
-      const navigationExtras: NavigationExtras = { area: area, relativeTo: this.route } as NavigationExtras;
+      const navigationExtras: NavigationExtras = { state: area, relativeTo: this.route } as NavigationExtras;
       this.router.navigate(['/area/edit'], navigationExtras);
     }
 

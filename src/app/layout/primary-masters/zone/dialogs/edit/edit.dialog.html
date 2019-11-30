@@ -25,11 +25,11 @@
                                     <option *ngFor="let state of states" [ngValue]="state.id">{{state.name}}
                                     </option>
                                 </select>
-                                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                                    <div *ngIf="f.state.errors.required">Please select state</div>
+                                <div *ngIf="form.get('state').errors" class="invalid-feedback">
+                                    <div *ngIf="form.get('state').errors.required">Please select state</div>
                                 </div>
                                 <!-- error block -->
-                                <div class="invalid-feedback" *ngIf="submitted && f.country.errors?.required">
+                                <div class="invalid-feedback" *ngIf="form.get('country').errors?.required">
                                     <sup>*</sup>Please select country
                                 </div>
                             </div>

@@ -24,11 +24,11 @@
                                     <select class="custom-select" formControlName="country">
                                         <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
                                     </select>
-                                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-                                        <div *ngIf="f.country.errors.required">Please select country</div>
+                                    <div *ngIf="form.get('country').errors" class="invalid-feedback">
+                                        <div *ngIf="form.get('country').errors.required">Please select country</div>
                                     </div>
                                     <!-- error block -->
-                                    <div class="invalid-feedback" *ngIf="submitted && f.country.errors?.required">
+                                    <div class="invalid-feedback" *ngIf="form.get('country').errors?.required">
                                         <sup>*</sup>Please select country
                                     </div>
                                 </div>

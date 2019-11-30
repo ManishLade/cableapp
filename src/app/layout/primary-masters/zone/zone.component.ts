@@ -106,7 +106,7 @@ export class ZoneComponent implements OnInit {
     }
 
     onEdit(index: number, zone: Zone) {
-      const navigationExtras: NavigationExtras = { zone: zone, relativeTo: this.route } as NavigationExtras;
+      const navigationExtras: NavigationExtras = { state: zone, relativeTo: this.route } as NavigationExtras;
       this.router.navigate(['/zone/edit'], navigationExtras);
     }
 

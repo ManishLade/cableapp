@@ -52,7 +52,7 @@ export class EditCityComponent implements OnInit {
 
     ngOnInit() {
       this.f.name.setValue(this.city.Name);
-      this.f.zone.setValue(this.city.ZoneId);
+      this.form.get('zone').setValue(this.city.ZoneId);
       this.f.status.setValue(this.city.Status === 1 ? true : false);
     }
 

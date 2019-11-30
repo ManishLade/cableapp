@@ -18,7 +18,7 @@ export class EditAreaComponent implements OnInit {
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true),
-        city: new FormControl('', Validators.required),
+        city: new FormControl(null, Validators.required),
     });
 
     area: Area;
@@ -52,6 +52,7 @@ export class EditAreaComponent implements OnInit {
 
     ngOnInit() {
       this.f.name.setValue(this.area.Name);
+      this.form.get('city').setValue(this.area.CityId);
       this.f.status.setValue(this.area.Status === 1 ? true : false);
     }
 

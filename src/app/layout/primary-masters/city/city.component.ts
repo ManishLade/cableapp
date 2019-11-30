@@ -106,7 +106,7 @@ export class CityComponent implements OnInit {
     }
 
     onEdit(index: number, city: City) {
-      const navigationExtras: NavigationExtras = { city: city, relativeTo: this.route } as NavigationExtras;
+      const navigationExtras: NavigationExtras = { state: city, relativeTo: this.route } as NavigationExtras;
       this.router.navigate(['/city/edit'], navigationExtras);
     }
 
