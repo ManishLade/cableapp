@@ -15,9 +15,34 @@ import { DataService } from '../../services/data.service';
 })
 export class EditCompanyComponent implements OnInit {
     form = new FormGroup({
-        name: new FormControl('', Validators.required),
-        status: new FormControl(true)
+        businessname: new FormControl('', Validators.required),
+        slogan: new FormControl('', Validators.required),
+        addressline1: new FormControl('', Validators.required),
+        addressline2: new FormControl('', Validators.required),
+        addressline3: new FormControl('', Validators.required),
+        country: new FormControl(0, Validators.required),
+        state: new FormControl(0, Validators.required),
+        zone: new FormControl(0, Validators.required),
+        city: new FormControl(0, Validators.required),
+        postcode: new FormControl('', Validators.required),
+        email: new FormControl('', Validators.email),
+        mobileno: new FormControl('', Validators.required),
+        phoneno: new FormControl('', Validators.required),
+        tinno: new FormControl('', Validators.required),
+        panno: new FormControl('', Validators.required),
+        servicetaxno: new FormControl('', Validators.required),
+        entertainmenttaxno: new FormControl('', Validators.required),
+        cstno: new FormControl('', Validators.required),
+        website: new FormControl('', Validators.required),
+        status: new FormControl(true),
+        operatorname: new FormControl('', Validators.maxLength(256)),
+        operatorcode: new FormControl('', Validators.maxLength(256)),
+        areaofoperation: new FormControl('', Validators.required),
+        gstno: new FormControl('', Validators.maxLength(256)),
+        adharno: new FormControl('', Validators.maxLength(256)),
+        documentsavepath: new FormControl('', Validators.required)
     });
+
 
     company: Company;
 
@@ -41,12 +66,12 @@ export class EditCompanyComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.f.name.setValue(this.company.Name);
+      this.f.businessname.setValue(this.company.BusinessName);
       this.f.status.setValue(this.company.Status === 1 ? true : false);
     }
 
     onEdit() {
-        this.company.Name = this.f.name.value;
+        this.company.BusinessName = this.f.BusinessName.value;
         const self = this;
         this.dataService.updateCompany(this.company).subscribe(
             data => {

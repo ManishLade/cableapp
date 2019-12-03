@@ -82,7 +82,7 @@ export class CompanyComponent implements OnInit {
                 self.dataService.deleteCompany(row.Id).subscribe(res => {
                     if (res['Result']) {
                         const foundIndex = self.exampleDatabase.dataChange.value.findIndex(
-                            x => x.Name === row.Name
+                            x => x.BusinessName === row.Name
                         );
                         // for delete we use splice in order to remove single object from DataService
                         self.exampleDatabase.dataChange.value.splice(
@@ -179,7 +179,7 @@ export class ExampleDataSource extends DataSource<Company> {
                     .slice()
                     .filter((company: Company) => {
                         const searchStr = (
-                            company.Name + company.Id
+                            company.BusinessName + company.Id
                         ).toLowerCase();
                         return (
                             searchStr.indexOf(this.filter.toLowerCase()) !== -1
@@ -215,7 +215,7 @@ export class ExampleDataSource extends DataSource<Company> {
 
             switch (this._sort.active) {
                 case 'name':
-                    [propertyA, propertyB] = [a.Name, b.Name];
+                    [propertyA, propertyB] = [a.BusinessName, b.BusinessName];
                     break;
                 case 'id':
                     [propertyA, propertyB] = [a.Id, b.Id];
