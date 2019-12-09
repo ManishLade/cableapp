@@ -12,6 +12,7 @@ import { CoreModule } from './shared/interceptor/core.module';
 import { httpInterceptorProviders } from './shared/interceptor';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { GlobalErrorHandler } from './shared/modules/error-handler/globalerror.handle';
+import { Router } from '@angular/router';
 
 
 @NgModule({
@@ -30,4 +31,10 @@ import { GlobalErrorHandler } from './shared/modules/error-handler/globalerror.h
         {provide: ErrorHandler, useClass: GlobalErrorHandler}],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+    constructor(private readonly router: Router) {
+        router.events
+            .subscribe(console.log);
+    }
+}
