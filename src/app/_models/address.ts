@@ -32,4 +32,3 @@ export class Address {
     State: State;
     Zone: Zone;
   }
-
