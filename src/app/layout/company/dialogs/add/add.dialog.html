@@ -69,9 +69,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="coutry">Country</label>
-                                            <select class="custom-select" formControlName="country">
+                                            <select class="custom-select" (change)="CountryChange($event)" formControlName="country">
                                                 <option value="0">--Select Country--</option>
-                                                <option *ngFor="let country of countries" [ngValue]="country.id">
+                                                <option *ngFor="let country of countries" [value]="country.id">
                                                     {{country.name}}</option>
                                             </select>
                                             <div *ngIf="form.get('country').errors" class="invalid-feedback">
@@ -85,9 +85,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="coutry">State</label>
-                                            <select class="custom-select" formControlName="state">
+                                            <select class="custom-select" (change)="StateChange($event)" formControlName="state">
                                                 <option value="0">--Select State--</option>
-                                                <option *ngFor="let state of states" [ngValue]="state.id">{{state.name}}
+                                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}
                                                 </option>
                                             </select>
                                             <div *ngIf="form.get('state').errors" class="invalid-feedback">
@@ -100,9 +100,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="zone">Zone</label>
-                                            <select class="custom-select" formControlName="zone">
+                                            <select class="custom-select" (change)="ZoneChange($event)" formControlName="zone">
                                                 <option value="0">--Select Zone--</option>
-                                                <option *ngFor="let zone of zones" [ngValue]="zone.id">{{zone.name}}
+                                                <option *ngFor="let zone of zones" [value]="zone.id">{{zone.name}}
                                                 </option>
                                             </select>
                                             <div *ngIf="form.get('zone').errors" class="invalid-feedback">
@@ -115,9 +115,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="city">City</label>
-                                            <select class="custom-select" formControlName="city">
+                                            <select class="custom-select" (change)="CityChange($event)" formControlName="city">
                                                 <option value="0">--Select City--</option>
-                                                <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}
+                                                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}
                                                 </option>
                                             </select>
                                             <div *ngIf="form.get('city').errors" class="invalid-feedback">
