@@ -35,7 +35,7 @@ export class CompanyComponent implements OnInit {
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['Name', 'Created Date', 'Status', 'Edit', 'Delete'];
+    displayedColumns = ['BusinessName','Email', 'Mobile No', 'Created Date', 'Status', 'Edit', 'Delete'];
     exampleDatabase: DataService | null;
     dataSource: ExampleDataSource | null;
     index: number;

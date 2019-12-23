@@ -7,6 +7,7 @@ import { CountryDataService } from '@app/layout/primary-masters/country/services
 import { StateDataService } from '@app/layout/primary-masters/state/services/data.service';
 import { CityDataService } from '@app/layout/primary-masters/city/services/data.service';
 import { ZoneDataService } from '@app/layout/primary-masters/zone/services/data.service';
+import { Address } from '@app/_models/address';
 
 @Component({
     selector: 'app-add.dialog',
@@ -35,12 +36,12 @@ export class AddCompanyComponent implements OnInit {
         cstno: new FormControl(''),
         website: new FormControl(''),
         status: new FormControl(true),
-        operatorname: new FormControl('', Validators.maxLength(256)),
-        operatorcode: new FormControl('', Validators.maxLength(256)),
+        operatorname: new FormControl(''),
+        operatorcode: new FormControl(''),
         areaofoperation: new FormControl(''),
-        gstno: new FormControl('', Validators.maxLength(256)),
-        adharno: new FormControl('', Validators.maxLength(256)),
-        documentsavepath: new FormControl('', Validators.maxLength(256))
+        gstno: new FormControl(''),
+        adharno: new FormControl(''),
+        documentsavepath: new FormControl('')
     });
 
     countries: { name: string; id: number; }[];
@@ -71,10 +72,32 @@ export class AddCompanyComponent implements OnInit {
     ngOnInit() {}
 
     onSubmit() {
-        // const company = new Company();
-        const company = this.form.value as Company;
-        company.Id = 0;
+        const company = new Company();
+        var comp = this.form.value;
         debugger;
+        company.Id = 0;
+        company.BusinessName = comp.businessname;
+        company.Slogan = comp.slogan;
+        company.OperatorName = comp.operatorname;
+        company.Address = new Address();
+        company.Address.AddressLine1 = comp.addressline1;
+        company.Address.AddressLine2 = comp.addressline2;
+        company.Address.AddressLine3 = comp.addressline3;
+        company.Address.CountryId = comp.country;
+        company.Address.CityId = comp.city;
+        company.Address.ZoneId = comp.zone;
+        company.Address.StateId = comp.state;
+        company.Address.AadharNo = comp.adharno;
+        company.Address.PANNo = comp.panno;
+        company.Address.TINNo = comp.tinno;
+        company.Address.ServiceTaxNo = comp.servicetaxno;
+        company.Address.Website = comp.website;
+        company.Address.PostCode = comp.postcode;
+        company.Address.PhoneNo = comp.phoneno;
+        company.Address.MobileNo = comp.mobileno;
+        company.Address.AddressTypeId = 1;
+        company.Address.EntertainmentTaxNo = comp.entertainmenttaxno;
+        company.Address.CTSNo = comp.cstno;
         company.Status = this.form.get('status').value ? 1 : 0;
         const self = this;
         this.dataService.addCompany(company).subscribe(

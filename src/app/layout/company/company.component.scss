@@ -17,6 +17,12 @@ $theme: mat-light-theme($primary, $accent);
   @include angular-material-theme($dark-theme);
 }
 
+.mat-flat-button {
+  padding-right: 5px;
+  padding-left: 5px;
+  height: 32px;
+}
+
 ::ng-deep .spinner{
   top: 50% !important;
   left: 50% !important;
