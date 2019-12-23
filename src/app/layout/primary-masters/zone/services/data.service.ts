@@ -48,6 +48,26 @@ export class ZoneDataService {
             );
     }
 
+    /** CRUD METHODS */
+    getZonesByStateId(stateId): void {
+        this.spinnerService.show();
+
+        this.httpClient
+            .get<Zone[]>(`${environment.apiUrl}/api/state/${stateId}/zones`, {
+                responseType: 'json'
+            })
+            .subscribe(
+                data => {
+                    this.spinnerService.hide();
+                    this.dataChange.next(data['Result']);
+                },
+                (error: HttpErrorResponse) => {
+                    this.spinnerService.hide();
+                    console.log(error.name + ' ' + error.message);
+                }
+            );
+    }
+
     // DEMO ONLY, you can find working methods below
     addZone(zone: Zone) {
         this.spinnerService.show();

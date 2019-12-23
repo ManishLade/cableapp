@@ -69,9 +69,9 @@ export class AddCompanyComponent implements OnInit {
         return this.form.get('name');
     }
     ngOnInit() {}
-    
+
     onSubmit() {
-        //const company = new Company();
+        // const company = new Company();
         const company = this.form.value as Company;
         company.Id = 0;
         debugger;
@@ -90,24 +90,27 @@ export class AddCompanyComponent implements OnInit {
     }
 
     CountryChange(event) {
+        this.stateDataService.getAllStatesByCountryId(event.target.value);
         this.stateDataService.dataChange.subscribe(res => {
-            this.countries = res.map(x => {
+            this.states = res.map(x => {
                return { name: x.Name, id: x.Id };
             });
         });
     }
 
     StateChange(event) {
-        this.countryDataService.dataChange.subscribe(res => {
-            this.countries = res.map(x => {
+        this.zoneDataService.getZonesByStateId(event.target.value);
+        this.zoneDataService.dataChange.subscribe(res => {
+            this.zones = res.map(x => {
                return { name: x.Name, id: x.Id };
             });
         });
     }
 
     ZoneChange(event) {
-        this.countryDataService.dataChange.subscribe(res => {
-            this.countries = res.map(x => {
+        this.cityDataService.getCitiesByZoneId(event.target.value);
+        this.cityDataService.dataChange.subscribe(res => {
+            this.cities = res.map(x => {
                return { name: x.Name, id: x.Id };
             });
         });

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Country } from '../../models/issue';
 import { CountryDataService } from '../../services/data.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-add.dialog',
@@ -10,21 +11,34 @@ import { CountryDataService } from '../../services/data.service';
     styleUrls: ['./add.dialog.scss']
 })
 export class AddDialogComponent implements OnInit {
+    alert: any;
     form = new FormGroup({
         name: new FormControl('', Validators.required),
         status: new FormControl(true)
     });
+    error: any;
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         public dataService: CountryDataService,
+        private snackBar: MatSnackBar,
         private router: Router
-    ) {}
+    ) {
+        this.alert = {
+            id: 1,
+            type: 'danger',
+            message: 'Name already exists',
+        };
+    }
+
+    public closeAlert(alert: any) {
+        this.error = null;
+    }
 
     get name() {
         return this.form.get('name');
     }
-    ngOnInit() {}
+    ngOnInit() { }
 
     onSubmit() {
         const country = new Country();
@@ -35,6 +49,13 @@ export class AddDialogComponent implements OnInit {
         this.dataService.addCountry(country).subscribe(
             data => {
                 console.log(data);
+                if (data['IsError']) {
+                    self.error = data['ErrorMessage'];
+                    return;
+                }
+                self.snackBar.open('Record saved succesfully', 'Save', {
+                    duration: 2000
+                });
                 self.router.navigate(['/country'], {
                     relativeTo: this.route
                 });

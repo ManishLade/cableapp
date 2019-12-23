@@ -49,6 +49,25 @@ export class CityDataService {
             );
     }
 
+    getCitiesByZoneId(zoneId): void {
+        this.spinnerService.show();
+
+        this.httpClient
+            .get<City[]>(`${environment.apiUrl}/api/zone/${zoneId}/cities`, {
+                responseType: 'json'
+            })
+            .subscribe(
+                data => {
+                    this.spinnerService.hide();
+                    this.dataChange.next(data['Result']);
+                },
+                (error: HttpErrorResponse) => {
+                    this.spinnerService.hide();
+                    console.log(error.name + ' ' + error.message);
+                }
+            );
+    }
+
     // DEMO ONLY, you can find working methods below
     addCity(city: City) {
         this.spinnerService.show();

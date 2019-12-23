@@ -19,7 +19,7 @@ export class StateDataService {
     constructor(
         private httpClient: HttpClient,
         private spinnerService: Ng4LoadingSpinnerService
-    ) {}
+    ) { }
 
     get data(): State[] {
         return this.dataChange.value;
@@ -35,6 +35,26 @@ export class StateDataService {
 
         this.httpClient
             .get<State[]>(`${environment.apiUrl}/api/State`, {
+                responseType: 'json'
+            })
+            .subscribe(
+                data => {
+                    console.log(data['Result']);
+                    this.spinnerService.hide();
+                    this.dataChange.next(data['Result']);
+                },
+                (error: HttpErrorResponse) => {
+                    this.spinnerService.hide();
+                    console.log(error.name + ' ' + error.message);
+                }
+            );
+    }
+
+    getAllStatesByCountryId(countryId): void {
+        this.spinnerService.show();
+
+        this.httpClient
+            .get<State[]>(`${environment.apiUrl}/api/country/${countryId}/states`, {
                 responseType: 'json'
             })
             .subscribe(

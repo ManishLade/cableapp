@@ -96,11 +96,13 @@ export class CountryComponent implements OnInit {
                         a.click();
                         a.remove();
                         snack.dismiss();
-                        self.snackBar.open('Record', 'Delete', {
+                        self.snackBar.open('Record deleetd succesfully', 'Delete', {
                             duration: 2000
                         });
                     }
                 });
+            } else {
+                snack.dismiss();
             }
         });
     }
