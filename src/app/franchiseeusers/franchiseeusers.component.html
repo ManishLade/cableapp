@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand" href="#">PayTV SMS </a>
+  {{this.userValue | json}}
+  <button mat-icon-button class="gray-icon" svgIcon="archive" (click)="loginOn()">
+    <a [routerLink]="['/userdashboard']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-dashboard"></i>
+      <span>{{ 'User Dashboard' }}</span>
+  </a>
+  </button>
+<nav>

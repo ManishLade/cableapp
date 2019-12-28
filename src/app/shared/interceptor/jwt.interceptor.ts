@@ -27,16 +27,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
         console.log(token);
         if (!_.isNil(token)) {
-            const decoded = jwt_decode(token);
-            console.log(decoded);
-            const currentUser = {
-                username:
-                    decoded[
-                        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
-                    ],
-                id: decoded['UserId']
-            } as User;
-            this.authenticationService.currentUserSubject.next(currentUser);
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${token}`

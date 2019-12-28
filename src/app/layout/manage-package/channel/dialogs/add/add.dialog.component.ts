@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Company } from '../../models/Company';
-import { CompanyDataService } from '../../services/data.service';
+import { Channel } from '../../models/Channel';
+import { ChannelDataService } from '../../services/data.service';
 import { CountryDataService } from '@app/layout/primary-masters/country/services/data.service';
 import { StateDataService } from '@app/layout/primary-masters/state/services/data.service';
 import { CityDataService } from '@app/layout/primary-masters/city/services/data.service';
@@ -14,7 +14,7 @@ import { Address } from '@app/_models/address';
     templateUrl: './add.dialog.html',
     styleUrls: ['./add.dialog.scss']
 })
-export class AddCompanyComponent implements OnInit {
+export class AddChannelComponent implements OnInit {
     form = new FormGroup({
         businessname: new FormControl('', Validators.required),
         slogan: new FormControl('', Validators.maxLength(256)),
@@ -55,7 +55,7 @@ export class AddCompanyComponent implements OnInit {
         private stateDataService: StateDataService,
         private cityDataService: CityDataService,
         private zoneDataService: ZoneDataService,
-        public dataService: CompanyDataService,
+        public dataService: ChannelDataService,
         private router: Router
     ) {
         this.countryDataService.getAllCountries();
@@ -72,38 +72,38 @@ export class AddCompanyComponent implements OnInit {
     ngOnInit() {}
 
     onSubmit() {
-        const company = new Company();
+        const channel = new Channel();
         var comp = this.form.value;
         debugger;
-        company.Id = 0;
-        company.BusinessName = comp.businessname;
-        company.Slogan = comp.slogan;
-        company.OperatorName = comp.operatorname;
-        company.Address = new Address();
-        company.Address.AddressLine1 = comp.addressline1;
-        company.Address.AddressLine2 = comp.addressline2;
-        company.Address.AddressLine3 = comp.addressline3;
-        company.Address.CountryId = comp.country;
-        company.Address.CityId = comp.city;
-        company.Address.ZoneId = comp.zone;
-        company.Address.StateId = comp.state;
-        company.Address.AadharNo = comp.adharno;
-        company.Address.PANNo = comp.panno;
-        company.Address.TINNo = comp.tinno;
-        company.Address.ServiceTaxNo = comp.servicetaxno;
-        company.Address.Website = comp.website;
-        company.Address.PostCode = comp.postcode;
-        company.Address.PhoneNo = comp.phoneno;
-        company.Address.MobileNo = comp.mobileno;
-        company.Address.AddressTypeId = 1;
-        company.Address.EntertainmentTaxNo = comp.entertainmenttaxno;
-        company.Address.CTSNo = comp.cstno;
-        company.Status = this.form.get('status').value ? 1 : 0;
+        channel.Id = 0;
+        channel.BusinessName = comp.businessname;
+        channel.Slogan = comp.slogan;
+        channel.OperatorName = comp.operatorname;
+        channel.Address = new Address();
+        channel.Address.AddressLine1 = comp.addressline1;
+        channel.Address.AddressLine2 = comp.addressline2;
+        channel.Address.AddressLine3 = comp.addressline3;
+        channel.Address.CountryId = comp.country;
+        channel.Address.CityId = comp.city;
+        channel.Address.ZoneId = comp.zone;
+        channel.Address.StateId = comp.state;
+        channel.Address.AadharNo = comp.adharno;
+        channel.Address.PANNo = comp.panno;
+        channel.Address.TINNo = comp.tinno;
+        channel.Address.ServiceTaxNo = comp.servicetaxno;
+        channel.Address.Website = comp.website;
+        channel.Address.PostCode = comp.postcode;
+        channel.Address.PhoneNo = comp.phoneno;
+        channel.Address.MobileNo = comp.mobileno;
+        channel.Address.AddressTypeId = 1;
+        channel.Address.EntertainmentTaxNo = comp.entertainmenttaxno;
+        channel.Address.CTSNo = comp.cstno;
+        channel.Status = this.form.get('status').value ? 1 : 0;
         const self = this;
-        this.dataService.addCompany(company).subscribe(
+        this.dataService.addChannel(channel).subscribe(
             data => {
                 console.log(data);
-                self.router.navigate(['/company'], {
+                self.router.navigate(['/channel'], {
                     relativeTo: this.route
                 });
             },
@@ -144,7 +144,7 @@ export class AddCompanyComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/company'], {
+        this.router.navigate(['/channel'], {
             relativeTo: this.route
         });
     }

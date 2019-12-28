@@ -2,242 +2,246 @@
     <div class="toggle-button" [ngClass]="{ collapsed: collapsed }" (click)="toggleCollapsed()">
         <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;
     </div>
-    <div class="list-group">
-        <a [routerLink]="['/dashboard']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span>{{ 'Client Dashboard' | translate }}</span>
-        </a>
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandPrimaryMasters('primary-masters')">
-                <i class="{{addExpandCssClassPM}}"></i>&nbsp;
-                <span>{{ 'Primary masters' | translate }}</span>
-            </a>
-            <li class="nested" [class.expand]="showPrimarMasters === 'primary-masters'">
-                <ul class="submenu">
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/country']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Country' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/state']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'State' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/zone']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Zone' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/city']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'City' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/area']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Area' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/usergroup']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'User Group' | translate }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-        <a [routerLink]="['/company']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Company' | translate }}</span>
-        </a>
-        <a [routerLink]="['/franchisee']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Franchisee' | translate }}</span>
-        </a>
-        <a [routerLink]="['/prepaid-subscriber']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span style="white-space: pre-wrap;">{{ 'Franchisee Package Pricelist(Prepaid Subscriber)' | translate }}</span>
-        </a>
-        <a [routerLink]="['/manage-agents']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Manage Agent' | translate }}</span>
-        </a>
-        <a [routerLink]="['/manage-channel-group']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Manage Chanel Group' | translate }}</span>
-        </a>
-        <a [routerLink]="['/item-category']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'item Category' | translate }}</span>
-        </a>
-        <a [routerLink]="['/items']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Items' | translate }}</span>
-        </a>
-        <a [routerLink]="['/kits']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Kits' | translate }}</span>
-        </a>
-        <a [routerLink]="['/role']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'Role' | translate }}</span>
-        </a>
-        <a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;
-            <span>{{ 'User' | translate }}</span>
-        </a>
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandOtherMasters('other-masters')">
-                <i class="{{addExpandCssClassOM}}"></i>&nbsp;
-                <span>{{ 'Other Masters' | translate }}</span>
-            </a>
-            <li class="nested" [class.expand]="showOtherMasters === 'other-masters'">
-                <ul class="submenu">
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/supplier']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Supplier' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/channel-category']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Channel Category' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/cas-provider-setting']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'CAS Provider setting' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/charges']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Charges' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/complain-category']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Complain category' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/document-type']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Document type' | translate }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
-                <i class="{{addExpandCssClassMP}}"></i>&nbsp;
-                <span>{{ 'Manage package' | translate }}</span>
-            </a>
-            <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
-                <ul class="submenu">
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/channel']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Channel' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" [routerLink]="['/package']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-monument"></i>
-                            <span>{{ 'Package' | translate }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-        <div class="header-fields">
-            <a (click)="rltAndLtr()" class="list-group-item">
-                <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
+    <div *ngIf="this.userValue.role === 'Owner'">
+        <div class="list-group">
+            <a [routerLink]="['/dashboard']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-dashboard"></i>
+                <span>{{ 'Client Dashboard' | translate }}</span>
             </a>
             <div class="nested-menu">
-                <a class="list-group-item" (click)="addExpandOtherMasters('languages')">
-                    <span><i class="fa fa-language"></i>&nbsp; {{ 'Language' | translate }} <b class="caret"></b></span>
+                <a class="list-group-item" (click)="addExpandPrimaryMasters('primary-masters')">
+                    <i class="{{addExpandCssClassPM}}"></i>&nbsp;
+                    <span>{{ 'Primary masters' | translate }}</span>
                 </a>
-                <li class="nested" [class.expand]="showMenu === 'languages'">
+                <li class="nested" [class.expand]="showPrimarMasters === 'primary-masters'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('en')">
-                                {{ 'English' | translate }}
+                            <a class="list-group-item" [routerLink]="['/country']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Country' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fr')">
-                                {{ 'French' | translate }}
+                            <a class="list-group-item" [routerLink]="['/state']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'State' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('ur')">
-                                {{ 'Urdu' | translate }}
+                            <a class="list-group-item" [routerLink]="['/zone']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Zone' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('es')">
-                                {{ 'Spanish' | translate }}
+                            <a class="list-group-item" [routerLink]="['/city']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'City' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('it')">
-                                {{ 'Italian' | translate }}
+                            <a class="list-group-item" [routerLink]="['/area']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Area' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fa')">
-                                {{ 'Farsi' | translate }}
+                            <a class="list-group-item" [routerLink]="['/usergroup']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'User Group' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <a [routerLink]="['/company']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Company' | translate }}</span>
+            </a>
+            <a [routerLink]="['/franchisee']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Franchisee' | translate }}</span>
+            </a>
+            <a [routerLink]="['/prepaid-subscriber']" [routerLinkActive]="['router-link-active']"
+                class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span
+                    style="white-space: pre-wrap;">{{ 'Franchisee Package Pricelist(Prepaid Subscriber)' | translate }}</span>
+            </a>
+            <a [routerLink]="['/manage-agents']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Manage Agent' | translate }}</span>
+            </a>
+            <a [routerLink]="['/manage-channel-group']" [routerLinkActive]="['router-link-active']"
+                class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Manage Chanel Group' | translate }}</span>
+            </a>
+            <a [routerLink]="['/item-category']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'item Category' | translate }}</span>
+            </a>
+            <a [routerLink]="['/items']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Items' | translate }}</span>
+            </a>
+            <a [routerLink]="['/kits']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Kits' | translate }}</span>
+            </a>
+            <a [routerLink]="['/role']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'Role' | translate }}</span>
+            </a>
+            <a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span>{{ 'User' | translate }}</span>
+            </a>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandOtherMasters('other-masters')">
+                    <i class="{{addExpandCssClassOM}}"></i>&nbsp;
+                    <span>{{ 'Other Masters' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showOtherMasters === 'other-masters'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/supplier']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Supplier' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('de')">
-                                {{ 'German' | translate }}
+                            <a class="list-group-item" [routerLink]="['/channel-category']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel Category' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/cas-provider-setting']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'CAS Provider setting' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/charges']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Charges' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/complain-category']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Complain category' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/document-type']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Document type' | translate }}</span>
                             </a>
                         </li>
                     </ul>
                 </li>
             </div>
             <div class="nested-menu">
-                <a class="list-group-item" (click)="addExpandOtherMasters('profile')">
-                    <span><i class="fa fa-user"></i>&nbsp; John Smith</span>
+                <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
+                    <i class="{{addExpandCssClassMP}}"></i>&nbsp;
+                    <span>{{ 'Manage package' | translate }}</span>
                 </a>
-                <li class="nested" [class.expand]="showMenu === 'profile'">
+                <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
+                            <a class="list-group-item" [routerLink]="['/channel']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/login']" (click)="onLoggedout()">
-                                <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
+                            <a class="list-group-item" [routerLink]="['/package']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Package' | translate }}</span>
                             </a>
                         </li>
                     </ul>
                 </li>
             </div>
+            <div class="header-fields">               
+                <div class="nested-menu">
+                    <a class="list-group-item" (click)="addExpandOtherMasters('languages')">
+                        <span><i class="fa fa-language"></i>&nbsp; {{ 'Language' | translate }} <b
+                                class="caret"></b></span>
+                    </a>                  
+                </div>
+                <div class="nested-menu">                  
+                    <li class="nested" [class.expand]="showMenu === 'profile'">
+                        <ul class="submenu">
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/login']" (click)="onLoggedout()">
+                                    <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
         </div>
+    </div>
+    <div *ngIf="this.userValue.role === 'User'">
+        <div class="list-group">
+            <a [routerLink]="['/userdashboard']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+                <span>{{ 'User Dashboard' | translate }}</span>
+            </a>
+            <a [routerLink]="['/videohelp']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span style="white-space: pre-wrap;">{{ 'Video help' | translate }}</span>
+            </a>
+            <a [routerLink]="['/franchisemessage']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span style="white-space: pre-wrap;">{{ 'Franchisee Message' | translate }}</span>
+            </a>
+            <a [routerLink]="['/CASLogSTBVCSendtimeWise']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span style="white-space: pre-wrap;">{{ 'CAS Log Report' | translate }}</span>
+            </a>
+            <a [routerLink]="['/BulkUploadCASStatus']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span style="white-space: pre-wrap;">{{ 'CAS bulk upload status' | translate }}</span>
+            </a>
+            <a [routerLink]="['/CASNotifications']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span style="white-space: pre-wrap;">{{ 'CAS Notification' | translate }}</span>
+            </a>            
+        </div>
+
     </div>
 </nav>

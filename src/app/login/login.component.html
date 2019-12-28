@@ -41,8 +41,8 @@
                     </div>
                 </div>
                 <div class="mb-3 role-login-group">
-                    <select class="custom-select" formControlName="role">
-                        <option *ngFor="let role of roles" [ngValue]="role">{{role}}</option>
+                    <select class="custom-select" formControlName="role" (change)="roleChange($event)">
+                        <option *ngFor="let role of roles" [value]="role">{{role}}</option>
                     </select>
                     <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
                         <div *ngIf="f.role.errors?.required">Please select Role</div>

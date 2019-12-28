@@ -2,13 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 
+const defaultRoute = 'dashboard';
+// const role = JSON.parse(localStorage.getItem('currentUser')).role;
+
+// if (role === 'Owner') {
+// // superadmin role
+// defaultRoute = 'dashboard';
+// } else if (role === 'User') {
+//   // normal user role
+//   defaultRoute = 'userdashboard';
+// }
+
 const routes: Routes = [
     {
         path: '',
-        component: LayoutComponent,
+        component: LayoutComponent, pathMatch: 'prefix',
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
             { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+            { path: 'userdashboard', loadChildren: () => import('./userdashboard/userdashboard.module').then(m => m.UserdashboardModule) },
             { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
             { path: 'items', loadChildren: () => import('./items/items.module').then(m => m.ItemsModule) },
             { path: 'role', loadChildren: () => import('./role/role.module').then(m => m.RoleModule) },
@@ -51,7 +62,13 @@ const routes: Routes = [
             { path: 'area', loadChildren: () => import('./primary-masters/area/area.module').then(m => m.AreaModule) },
             { path: 'zone', loadChildren: () => import('./primary-masters/zone/zone.module').then(m => m.ZoneModule) },
             { path: 'franchisee', loadChildren: () => import('./franchisee/franchisee.module').then(m => m.FranchiseeModule) },
-            { path: 'item-category', loadChildren: () => import('./item-category/item-category.module').then(m => m.ItemCategoryModule) }
+            { path: 'item-category', loadChildren: () => import('./item-category/item-category.module').then(m => m.ItemCategoryModule) },
+            {
+                path: '**',
+                redirectTo: defaultRoute,
+                pathMatch: 'prefix'
+            },
+            { path: '', redirectTo: defaultRoute, pathMatch: 'prefix'},
         ]
     }
 ];

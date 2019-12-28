@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from '@app/_models/user';
+import { AuthenticationService } from '@app/shared/services/authentication.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -15,13 +17,17 @@ export class SidebarComponent implements OnInit {
     showManagePackage = '';
     showMenu = '';
     pushRightClass: string;
+    userValue: User;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
     addExpandCssClassPM = 'fa fa-plus';
     addExpandCssClassOM = 'fa fa-plus';
     addExpandCssClassMP = 'fa fa-plus';
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService,
+        private authenticationService: AuthenticationService,
+        public router: Router) {
+        this.userValue = this.authenticationService.currentUserValue;
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&

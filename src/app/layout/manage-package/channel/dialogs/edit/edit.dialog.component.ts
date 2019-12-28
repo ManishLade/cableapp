@@ -6,14 +6,14 @@ import {
     Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Company } from '../../models/Company';
-import { CompanyDataService } from '../../services/data.service';
+import { Channel } from '../../models/Channel';
+import { ChannelDataService } from '../../services/data.service';
 @Component({
     selector: 'app-baza.dialog',
     templateUrl: './edit.dialog.html',
     styleUrls: ['./edit.dialog.scss']
 })
-export class EditCompanyComponent implements OnInit {
+export class EditChannelComponent implements OnInit {
     form = new FormGroup({
         businessname: new FormControl('', Validators.required),
         slogan: new FormControl('', Validators.required),
@@ -44,16 +44,16 @@ export class EditCompanyComponent implements OnInit {
     });
 
 
-    company: Company;
+    channel: Channel;
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        public dataService: CompanyDataService,
+        public dataService: ChannelDataService,
         private router: Router
     ) {
         const navigation = this.router.getCurrentNavigation();
-        this.company = navigation.extras.state as Company;
+        this.channel = navigation.extras.state as Channel;
     }
 
     get name() {
@@ -66,17 +66,17 @@ export class EditCompanyComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.f.businessname.setValue(this.company.BusinessName);
-      this.f.status.setValue(this.company.Status === 1 ? true : false);
+      this.f.businessname.setValue(this.channel.BusinessName);
+      this.f.status.setValue(this.channel.Status === 1 ? true : false);
     }
 
     onEdit() {
-        this.company.BusinessName = this.f.BusinessName.value;
+        this.channel.BusinessName = this.f.BusinessName.value;
         const self = this;
-        this.dataService.updateCompany(this.company).subscribe(
+        this.dataService.updateChannel(this.channel).subscribe(
             data => {
                 console.log(data);
-                self.router.navigate(['/company'], {
+                self.router.navigate(['/channel'], {
                     relativeTo: this.route
                 });
             },
@@ -88,7 +88,7 @@ export class EditCompanyComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/company'], {
+        this.router.navigate(['/channel'], {
             relativeTo: this.route
         });
     }

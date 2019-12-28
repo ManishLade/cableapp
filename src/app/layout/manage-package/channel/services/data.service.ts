@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Company } from '../models/Company';
+import { Channel } from '../models/Channel';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -9,10 +9,10 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Injectable({
     providedIn: 'root'
 })
-export class CompanyDataService {
-    private readonly API_URL = 'app/api/company.data.json';
+export class ChannelDataService {
+    private readonly API_URL = 'app/api/channel.data.json';
 
-    dataChange: BehaviorSubject<Company[]> = new BehaviorSubject<Company[]>([]);
+    dataChange: BehaviorSubject<Channel[]> = new BehaviorSubject<Channel[]>([]);
     // Temporarily stores data from dialogs
     dialogData: any;
 
@@ -21,7 +21,7 @@ export class CompanyDataService {
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
 
-    get data(): Company[] {
+    get data(): Channel[] {
         return this.dataChange.value;
     }
 
@@ -33,7 +33,7 @@ export class CompanyDataService {
     getAllCountries(): void {
         this.spinnerService.show();
         this.httpClient
-            .get<Company[]>(`${environment.apiUrl}/api/Company`, {
+            .get<Channel[]>(`${environment.apiUrl}/api/Channel`, {
                 responseType: 'json'
             })
             .subscribe(
@@ -48,10 +48,10 @@ export class CompanyDataService {
     }
 
     // DEMO ONLY, you can find working methods below
-    addCompany(company: Company) {
+    addChannel(channel: Channel) {
         this.spinnerService.show();
         return this.httpClient
-            .post(`${environment.apiUrl}/api/Company`, company)
+            .post(`${environment.apiUrl}/api/Channel`, channel)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -60,10 +60,10 @@ export class CompanyDataService {
             );
     }
 
-    deleteCompany(companyId: number) {
+    deleteChannel(channelId: number) {
         this.spinnerService.show();
         return this.httpClient
-            .delete(`${environment.apiUrl}/api/Company/${companyId}`)
+            .delete(`${environment.apiUrl}/api/Channel/${channelId}`)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();
@@ -72,10 +72,10 @@ export class CompanyDataService {
             );
     }
 
-    updateCompany(company: Company) {
+    updateChannel(channel: Channel) {
         this.spinnerService.show();
         return this.httpClient
-            .put(`${environment.apiUrl}/api/Company`, company)
+            .put(`${environment.apiUrl}/api/Channel`, channel)
             .pipe(
                 map(res => {
                     this.spinnerService.hide();

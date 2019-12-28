@@ -6,7 +6,7 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { AddCompanyComponent } from './dialogs/add/add.dialog.component';
 import { EditCompanyComponent } from './dialogs/edit/edit.dialog.component';
-import { DataService } from './services/data.service';
+import { CompanyDataService } from './services/data.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -49,6 +49,6 @@ import { CompanyComponent } from './company.component';
     ],
     declarations: [CompanyComponent, AddCompanyComponent, EditCompanyComponent, DeleteDialogComponent],
     entryComponents: [AddCompanyComponent, EditCompanyComponent, DeleteDialogComponent],
-    providers: [DataService, httpInterceptorProviders]
+    providers: [CompanyDataService, httpInterceptorProviders]
 })
 export class CompanyModule {}

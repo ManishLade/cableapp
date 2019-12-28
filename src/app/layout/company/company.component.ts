@@ -12,13 +12,13 @@ import { AddCompanyComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditCompanyComponent } from './dialogs/edit/edit.dialog.component';
 import { Company } from './models/Company';
-import { DataService } from './services/data.service';
+import { CompanyDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-company',
     templateUrl: './company.component.html',
     styleUrls: ['./company.component.scss'],
-    providers: [DataService],
+    providers: [CompanyDataService],
     entryComponents: [
         AddCompanyComponent,
         EditCompanyComponent,
@@ -29,14 +29,14 @@ export class CompanyComponent implements OnInit {
     constructor(
         public httpClient: HttpClient,
         public dialog: MatDialog,
-        public dataService: DataService,
+        public dataService: CompanyDataService,
         private route: ActivatedRoute,
         private router: Router,
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
     displayedColumns = ['BusinessName','Email', 'Mobile No', 'Created Date', 'Status', 'Edit', 'Delete'];
-    exampleDatabase: DataService | null;
+    exampleDatabase: CompanyDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
     id: number;
@@ -118,7 +118,7 @@ export class CompanyComponent implements OnInit {
     }
 
     public loadData() {
-        this.exampleDatabase = new DataService(this.httpClient, this.spinnerService);
+        this.exampleDatabase = new CompanyDataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
@@ -151,7 +151,7 @@ export class ExampleDataSource extends DataSource<Company> {
     renderedData: Company[] = [];
 
     constructor(
-        public _exampleDatabase: DataService,
+        public _exampleDatabase: CompanyDataService,
         public _paginator: MatPaginator,
         public _sort: MatSort
     ) {

@@ -13,7 +13,7 @@ export class AuthenticationService {
     public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<User>(new User());
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -34,7 +34,10 @@ export class AuthenticationService {
                 console.log(decoded);
                 const currentUser = {
                     username: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+                    roles: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+                    role: roleText,
                     id: decoded['UserId']} as User;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 this.currentUserSubject.next(currentUser);
                 return res;
             }));
@@ -43,6 +46,7 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('jwt');
+        localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
 }
