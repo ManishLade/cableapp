@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PageHeaderModule } from '@app/shared';
-import { UserRoutingModule } from './user-routing.module';
+import { ItemRoutingModule } from './item-routing.module';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
-import { AddUserComponent } from './dialogs/add/add.dialog.component';
-import { EditUserComponent } from './dialogs/edit/edit.dialog.component';
-import { UserDataService } from './services/data.service';
+import { AddItemComponent } from './dialogs/add/add.dialog.component';
+import { EditItemComponent } from './dialogs/edit/edit.dialog.component';
+import { ItemDataService } from './services/data.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,12 +24,12 @@ import { httpInterceptorProviders } from '@app/shared/interceptor';
 import { MatSnackBarModule } from '@angular/material';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { SwitchModule } from '@app/shared/modules/switch/switch.module';
-import { UserComponent } from './user.component';
+import { ItemComponent } from './item.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        UserRoutingModule,
+        ItemRoutingModule,
         PageHeaderModule,
         HttpClientModule,
         MatDialogModule,
@@ -47,8 +47,8 @@ import { UserComponent } from './user.component';
         Ng4LoadingSpinnerModule.forRoot(),
         ReactiveFormsModule
     ],
-    declarations: [UserComponent, AddUserComponent, EditUserComponent, DeleteDialogComponent],
-    entryComponents: [AddUserComponent, EditUserComponent, DeleteDialogComponent],
-    providers: [UserDataService, httpInterceptorProviders]
+    declarations: [ItemComponent, AddItemComponent, EditItemComponent, DeleteDialogComponent],
+    entryComponents: [AddItemComponent, EditItemComponent, DeleteDialogComponent],
+    providers: [ItemDataService, httpInterceptorProviders]
 })
-export class UserModule {}
+export class ItemModule {}

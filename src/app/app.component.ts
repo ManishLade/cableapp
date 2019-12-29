@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         alert('KKk');
         localStorage.removeItem('jwt');
+        localStorage.removeItem('currentUser');
     }
 
     @HostListener('window:onbeforeunload', ['$event'])

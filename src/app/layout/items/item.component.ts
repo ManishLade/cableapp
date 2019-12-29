@@ -8,35 +8,35 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AddUserComponent } from './dialogs/add/add.dialog.component';
+import { AddItemComponent } from './dialogs/add/add.dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
-import { EditUserComponent } from './dialogs/edit/edit.dialog.component';
-import { User } from './models/user';
-import { UserDataService } from './services/data.service';
+import { EditItemComponent } from './dialogs/edit/edit.dialog.component';
+import { Item } from './models/Item';
+import { ItemDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
-    selector: 'app-user',
-    templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss'],
-    providers: [UserDataService],
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.scss'],
+    providers: [ItemDataService],
     entryComponents: [
-        AddUserComponent,
-        EditUserComponent,
+        AddItemComponent,
+        EditItemComponent,
         DeleteDialogComponent
     ]
 })
-export class UserComponent implements OnInit {
+export class ItemComponent implements OnInit {
     constructor(
         public httpClient: HttpClient,
         public dialog: MatDialog,
-        public dataService: UserDataService,
+        public dataService: ItemDataService,
         private route: ActivatedRoute,
         private router: Router,
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['BusinessName','Email', 'Mobile No', 'Created Date', 'Status', 'Edit', 'Delete'];
-    exampleDatabase: UserDataService | null;
+    displayedColumns = ['BusinessName', 'Email', 'Mobile No', 'Created Date', 'Status', 'Edit', 'Delete'];
+    exampleDatabase: ItemDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;
     id: number;
@@ -56,8 +56,8 @@ export class UserComponent implements OnInit {
         this.loadData();
     }
 
-    addUser() {
-        this.router.navigate(['/user/add'], {
+    addItem() {
+        this.router.navigate(['/item/add'], {
             relativeTo: this.route
         });
     }
@@ -79,7 +79,7 @@ export class UserComponent implements OnInit {
         const self = this;
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
             if (confirmed) {
-                self.dataService.deleteUser(row.Id).subscribe(res => {
+                self.dataService.deleteItem(row.Id).subscribe(res => {
                     if (res['Result']) {
                         const foundIndex = self.exampleDatabase.dataChange.value.findIndex(
                             x => x.BusinessName === row.Name
@@ -105,20 +105,20 @@ export class UserComponent implements OnInit {
         });
     }
 
-    onEdit(index: number, user: User) {
-      const navigationExtras: NavigationExtras = { state: user, relativeTo: this.route } as NavigationExtras;
-      this.router.navigate(['/user/edit'], navigationExtras);
+    onEdit(index: number, item: Item) {
+      const navigationExtras: NavigationExtras = { state: item, relativeTo: this.route } as NavigationExtras;
+      this.router.navigate(['/item/edit'], navigationExtras);
     }
 
     private refreshTable() {
         // Refreshing table using paginator
         // Thanks yeager-j for tips
-        // https://github.com/marinantonio/angular-mat-table-crud/users/12
+        // https://github.com/marinantonio/angular-mat-table-crud/items/12
         this.paginator._changePageSize(this.paginator.pageSize);
     }
 
     public loadData() {
-        this.exampleDatabase = new UserDataService(this.httpClient, this.spinnerService);
+        this.exampleDatabase = new ItemDataService(this.httpClient, this.spinnerService);
         this.dataSource = new ExampleDataSource(
             this.exampleDatabase,
             this.paginator,
@@ -136,7 +136,7 @@ export class UserComponent implements OnInit {
     }
 }
 
-export class ExampleDataSource extends DataSource<User> {
+export class ExampleDataSource extends DataSource<Item> {
     _filterChange = new BehaviorSubject('');
 
     get filter(): string {
@@ -147,11 +147,11 @@ export class ExampleDataSource extends DataSource<User> {
         this._filterChange.next(filter);
     }
 
-    filteredData: User[] = [];
-    renderedData: User[] = [];
+    filteredData: Item[] = [];
+    renderedData: Item[] = [];
 
     constructor(
-        public _exampleDatabase: UserDataService,
+        public _exampleDatabase: ItemDataService,
         public _paginator: MatPaginator,
         public _sort: MatSort
     ) {
@@ -161,7 +161,7 @@ export class ExampleDataSource extends DataSource<User> {
     }
 
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<User[]> {
+    connect(): Observable<Item[]> {
         // Listen for any changes in the base data, sorting, filtering, or pagination
         const displayDataChanges = [
             this._exampleDatabase.dataChange,
@@ -177,9 +177,9 @@ export class ExampleDataSource extends DataSource<User> {
                 // Filter data
                 this.filteredData = this._exampleDatabase.data
                     .slice()
-                    .filter((user: User) => {
+                    .filter((item: Item) => {
                         const searchStr = (
-                            user.BusinessName + user.Id
+                            item.BusinessName + item.Id
                         ).toLowerCase();
                         return (
                             searchStr.indexOf(this.filter.toLowerCase()) !== -1
@@ -204,7 +204,7 @@ export class ExampleDataSource extends DataSource<User> {
     disconnect() {}
 
     /** Returns a sorted copy of the database data. */
-    sortData(data: User[]): User[] {
+    sortData(data: Item[]): Item[] {
         if (!this._sort.active || this._sort.direction === '') {
             return data;
         }

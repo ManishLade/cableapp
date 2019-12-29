@@ -1,0 +1,347 @@
+<div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #4b8df8;color: white;">
+                    <strong style="font-size: 18px;">Add Item</strong>
+                </div>
+                <div class="card-body">
+                    <form name="form" [formGroup]="form" (ngSubmit)="form.valid">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="businessname">Business Name</label>
+                                    <input type="text" class="form-control" formControlName="businessname"
+                                        [ngClass]="{'is-invalid':form.get('businessname').touched && form.get('businessname').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="slogan">Slogan</label>
+                                    <input type="text" class="form-control" formControlName="slogan"
+                                        [ngClass]="{'is-invalid':form.get('slogan').touched && form.get('slogan').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Slogan is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="addressline1">Address Line 1</label>
+                                    <input type="text" class="form-control" formControlName="addressline1"
+                                        [ngClass]="{'is-invalid':form.get('addressline1').touched && form.get('addressline1').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="addressline2">Address Line 2</label>
+                                    <input type="text" class="form-control" formControlName="addressline2"
+                                        [ngClass]="{'is-invalid':form.get('addressline2').touched && form.get('addressline2').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 2 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="addressline3">Address Line 3</label>
+                                            <input type="text" class="form-control" formControlName="addressline3"
+                                                [ngClass]="{'is-invalid':form.get('addressline3').touched && form.get('addressline3').invalid}"
+                                                required />
+                                            <div class="invalid-feedback">
+                                                <div>Address line 3 is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="coutry">Country</label>
+                                            <select class="custom-select" (change)="CountryChange($event)" formControlName="country">
+                                                <option value="0">--Select Country--</option>
+                                                <option *ngFor="let country of countries" [value]="country.id">
+                                                    {{country.name}}</option>
+                                            </select>
+                                            <div *ngIf="form.get('country').errors" class="invalid-feedback">
+                                                <div *ngIf="form.get('country').errors?.required">Please select country
+                                                </div>
+                                            </div>
+                                            <!-- error block -->
+                                            <div class="invalid-feedback" *ngIf="form.get('country').errors?.required">
+                                                <sup>*</sup>Please select country
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="coutry">State</label>
+                                            <select class="custom-select" (change)="StateChange($event)" formControlName="state">
+                                                <option value="0">--Select State--</option>
+                                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="form.get('state').errors" class="invalid-feedback">
+                                                <div *ngIf="form.get('state').errors?.required">Please select state</div>
+                                            </div>
+                                            <!-- error block -->
+                                            <div class="invalid-feedback" *ngIf="form.get('state').errors?.required">
+                                                <sup>*</sup>Please select state
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zone">Zone</label>
+                                            <select class="custom-select" (change)="ZoneChange($event)" formControlName="zone">
+                                                <option value="0">--Select Zone--</option>
+                                                <option *ngFor="let zone of zones" [value]="zone.id">{{zone.name}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="form.get('zone').errors" class="invalid-feedback">
+                                                <div *ngIf="form.get('zone').errors?.required">Please select zone</div>
+                                            </div>
+                                            <!-- error block -->
+                                            <div class="invalid-feedback" *ngIf="form.get('zone').errors?.required">
+                                                <sup>*</sup>Please select zone
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <select class="custom-select" (change)="CityChange($event)" formControlName="city">
+                                                <option value="0">--Select City--</option>
+                                                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="form.get('city').errors" class="invalid-feedback">
+                                                <div *ngIf="form.get('city').errors?.required">Please select city</div>
+                                            </div>
+                                            <!-- error block -->
+                                            <div class="invalid-feedback" *ngIf="form.get('city').errors?.required">
+                                                <sup>*</sup>Please select city
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                Logo Control
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="postcode">PostCode</label>
+                                    <input type="text" class="form-control" formControlName="postcode"
+                                        [ngClass]="{'is-invalid':form.get('postcode').touched && form.get('postcode').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="addressline1">Email</label>
+                                    <input type="text" class="form-control" formControlName="email"
+                                        [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="mobileno">Mobile no</label>
+                                    <input type="text" class="form-control" formControlName="mobileno"
+                                        [ngClass]="{'is-invalid':form.get('mobileno').touched && form.get('mobileno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>mobile no is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="phoneno">Phone No</label>
+                                    <input type="text" class="form-control" formControlName="phoneno"
+                                        [ngClass]="{'is-invalid':form.get('phoneno').touched && form.get('phoneno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>phome no is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="tinno">Tin No</label>
+                                    <input type="text" class="form-control" formControlName="tinno"
+                                        [ngClass]="{'is-invalid':form.get('tinno').touched && form.get('tinno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Tin no is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="panno">Pan No</label>
+                                    <input type="text" class="form-control" formControlName="panno"
+                                        [ngClass]="{'is-invalid':form.get('panno').touched && form.get('panno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="servicetaxno">Service Tax No</label>
+                                    <input type="text" class="form-control" formControlName="servicetaxno"
+                                        [ngClass]="{'is-invalid':form.get('servicetaxno').touched && form.get('servicetaxno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="entertainmenttaxno">Entertainment Tax no</label>
+                                    <input type="text" class="form-control" formControlName="entertainmenttaxno"
+                                        [ngClass]="{'is-invalid':form.get('entertainmenttaxno').touched && form.get('entertainmenttaxno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="cstno">CST No</label>
+                                    <input type="text" class="form-control" formControlName="cstno"
+                                        [ngClass]="{'is-invalid':form.get('cstno').touched && form.get('cstno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="website">Website</label>
+                                    <input type="text" class="form-control" formControlName="website"
+                                        [ngClass]="{'is-invalid':form.get('website').touched && form.get('website').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="switch-2">Status</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="status"></app-switch>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="operatorname">Operator Name</label>
+                                    <input type="text" class="form-control" formControlName="operatorname"
+                                        [ngClass]="{'is-invalid':form.get('operatorname').touched && form.get('operatorname').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Operator name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="operatorcode">Operator Code</label>
+                                    <input type="text" class="form-control" formControlName="operatorcode"
+                                        [ngClass]="{'is-invalid':form.get('operatorcode').touched && form.get('operatorcode').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="areaofoperation">Area of operation</label>
+                                    <input type="text" class="form-control" formControlName="areaofoperation"
+                                        [ngClass]="{'is-invalid':form.get('areaofoperation').touched && form.get('areaofoperation').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Address line 1 is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="gstno">GST No</label>
+                                    <input type="text" class="form-control" formControlName="gstno"
+                                        [ngClass]="{'is-invalid':form.get('gstno').touched && form.get('gstno').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Customer document save path is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="adharno">Aadhar No</label>
+                                    <input type="text" class="form-control" formControlName="adharno"
+                                        [ngClass]="{'is-invalid':form.get('adharno').touched && form.get('adharno').invalid}"
+                                        required />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="documentsavepath">Customer document save path</label>
+                                    <input type="text" class="form-control" formControlName="documentsavepath"
+                                        [ngClass]="{'is-invalid':form.get('documentsavepath').touched && form.get('documentsavepath').invalid}"
+                                        required />
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-4" [disabled]="!form.valid" (click)="onSubmit()">Save</button>
+                        <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
