@@ -221,26 +221,204 @@
                 <i class="fa fa-fw fa-dashboard"></i>&nbsp;
                 <span>{{ 'User Dashboard' | translate }}</span>
             </a>
-            <a [routerLink]="['/videohelp']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <a [routerLink]="['/video-help']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-th-list"></i>&nbsp;
                 <span style="white-space: pre-wrap;">{{ 'Video help' | translate }}</span>
             </a>
-            <a [routerLink]="['/franchisemessage']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <a [routerLink]="['/franchisee-message']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-th-list"></i>&nbsp;
                 <span style="white-space: pre-wrap;">{{ 'Franchisee Message' | translate }}</span>
             </a>
-            <a [routerLink]="['/CASLogSTBVCSendtimeWise']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <a [routerLink]="['/cas-log-report']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-th-list"></i>&nbsp;
                 <span style="white-space: pre-wrap;">{{ 'CAS Log Report' | translate }}</span>
             </a>
-            <a [routerLink]="['/BulkUploadCASStatus']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <a [routerLink]="['/cas-bulkuploadstatus']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-th-list"></i>&nbsp;
                 <span style="white-space: pre-wrap;">{{ 'CAS bulk upload status' | translate }}</span>
             </a>
-            <a [routerLink]="['/CASNotifications']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <a [routerLink]="['/cas-notification']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-th-list"></i>&nbsp;
                 <span style="white-space: pre-wrap;">{{ 'CAS Notification' | translate }}</span>
             </a>            
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
+                    <i class="{{addExpandCssClassMP}}"></i>&nbsp;
+                    <span>{{ 'Subscriber Price setup' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/channel']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/package']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Package' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
+                    <i class="{{addExpandCssClassMP}}"></i>&nbsp;
+                    <span>{{ 'Manage Account' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/channel']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/package']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Package' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManageTax('manage-tax')">
+                    <i class="{{addExpandCssClassMT}}"></i>&nbsp;
+                    <span>{{ 'Manage Tax' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManageTax === 'manage-tax'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/subscriber-master']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Subscriber Master Creation' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManageItems('manage-Item')">
+                    <i class="{{addExpandCssClassManageItem}}"></i>&nbsp;
+                    <span>{{ 'Manage Item' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManageItem === 'manage-Item'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/item-opening']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Item Opening' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/device-pairing']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Device pairing' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManageSubscriber('manage-subscriber')">
+                    <i class="{{addExpandCssClassMS}}"></i>&nbsp;
+                    <span>{{ 'Manage Subscriber' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManageSubscriber === 'manage-subscriber'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/subscriber-master']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Subscriber Master Creation' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManageImport('manage-import')">
+                    <i class="{{addExpandCssClassMP}}"></i>&nbsp;
+                    <span>{{ 'Manage Import' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManageImport === 'manage-import'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/channel']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/package']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Package' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
+                    <i class="{{addExpandCssClassMP}}"></i>&nbsp;
+                    <span>{{ 'Customer Relation Management' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/channel']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/package']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Package' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandManagePackage('manage-package')">
+                    <i class="{{addExpandCssClassMP}}"></i>&nbsp;
+                    <span>{{ 'App Recipt Unicode' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showManagePackage === 'manage-package'">
+                    <ul class="submenu">
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/channel']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Channel' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="list-group-item" [routerLink]="['/package']"
+                                [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>
+                                <span>{{ 'Package' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>            
         </div>
 
     </div>

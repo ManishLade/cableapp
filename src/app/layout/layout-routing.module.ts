@@ -7,11 +7,11 @@ const user = JSON.parse(localStorage.getItem('currentUser'));
 const role = user ? user.role : '';
 
 if (role === 'Owner') {
-// superadmin role
-defaultRoute = 'dashboard';
+    // superadmin role
+    defaultRoute = 'dashboard';
 } else if (role === 'User') {
-  // normal user role
-  defaultRoute = 'userdashboard';
+    // normal user role
+    defaultRoute = 'userdashboard';
 }
 
 const routes: Routes = [
@@ -19,7 +19,7 @@ const routes: Routes = [
         path: '',
         component: LayoutComponent, pathMatch: 'prefix',
         children: [
-            { path: '', redirectTo: defaultRoute, pathMatch: 'prefix'},
+            { path: '', redirectTo: defaultRoute, pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
             { path: 'userdashboard', loadChildren: () => import('./userdashboard/userdashboard.module').then(m => m.UserdashboardModule) },
             { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
@@ -63,8 +63,36 @@ const routes: Routes = [
             { path: 'city', loadChildren: () => import('./primary-masters/city/city.module').then(m => m.CityModule) },
             { path: 'area', loadChildren: () => import('./primary-masters/area/area.module').then(m => m.AreaModule) },
             { path: 'zone', loadChildren: () => import('./primary-masters/zone/zone.module').then(m => m.ZoneModule) },
+            {
+                path: 'item-opening',
+                loadChildren: () => import('./manage-item/item-opening/item-opening.module').then(m => m.ItemOpeningModule)
+            },
+            {
+                path: 'device-pairing',
+                loadChildren: () => import('./manage-item/device-pairing/device-pairing.module').then(m => m.DevicePairingModule)
+            },
             { path: 'franchisee', loadChildren: () => import('./franchisee/franchisee.module').then(m => m.FranchiseeModule) },
-            { path: 'item-category', loadChildren: () => import('./item-category/item-category.module').then(m => m.ItemCategoryModule) },
+            { path: 'video-help', loadChildren: () => import('./video-help/video-help.module').then(m => m.VideoHelpModule) },
+            {
+                path: 'franchisee-message',
+                loadChildren: () => import('./franchisee-message/franchisee-message.module').then(m => m.FranchiseeMessageModule)
+            },
+            {
+                path: 'cas-log-report',
+                loadChildren: () => import('./cas-log-report/cas-log-report.module').then(m => m.CasLogReportModule)
+            },
+            {
+                path: 'cas-bulkuploadstatus',
+                loadChildren: () => import('./cas-bulkuploadstatus/cas-bulkuploadstatus.module').then(m => m.CasBulkuploadstatusModule)
+            },
+            {
+                path: 'cas-notification',
+                loadChildren: () => import('./cas-notification/cas-notification.module').then(m => m.CasNotificationModule)
+            },
+            {
+                path: 'subscriber-master',
+                loadChildren: () => import('./manage-subscriber/subscriber-master/subscriber-master.module').then(m => m.SubscriberMasterModule)
+            }
         ]
     }
 ];
@@ -73,4 +101,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class LayoutRoutingModule {}
+export class LayoutRoutingModule { }
