@@ -16,8 +16,37 @@ import { Address } from '@app/_models/address';
 })
 export class AddChannelComponent implements OnInit {
     form = new FormGroup({
-        businessname: new FormControl('', Validators.required),
-        slogan: new FormControl('', Validators.maxLength(256)),
+        company: new FormControl(0, Validators.required),
+        name: new FormControl('', Validators.required),
+        category: new FormControl(0, Validators.required),
+        servicetype: new FormControl(0, Validators.required),
+        local: new FormControl(false),
+        digital: new FormControl(true),
+        free: new FormControl(false),
+        fixprice: new FormControl(true),
+        freedayonfirstactivation: new FormControl(false),
+        singlesold: new FormControl(true),
+        contenturl: new FormControl(''),
+        channelsignal:  new FormControl(0, Validators.required),
+        itemcode: new FormControl(''),
+        subscriptiontype:  new FormControl(0, Validators.required),
+        subscriptionvalue: new FormControl(''),
+        freedays: new FormControl(''),
+        masterstbautoprepaidcharges: new FormControl('', Validators.required),
+        childstbautoprepaidcharges: new FormControl('', Validators.required),
+        montlhyprice: new FormControl('', Validators.required),
+        threemonthsprice: new FormControl('', Validators.required),
+        sixmonthsprice: new FormControl('', Validators.required),
+        ninemonthsprice: new FormControl('', Validators.required),
+        yearlymonthsprice: new FormControl('', Validators.required),
+        generalfreedays: new FormControl(''),
+        startdate: new FormControl(''),
+        enddate: new FormControl(''),
+        description: new FormControl(''),
+        modulator: new FormControl(''),
+        language: new FormControl(''),
+        lcnno: new FormControl(''),
+        lcnrank: new FormControl(''),
         addressline1: new FormControl('', Validators.maxLength(256)),
         addressline2: new FormControl('', Validators.maxLength(256)),
         addressline3: new FormControl('', Validators.maxLength(256)),
@@ -73,7 +102,7 @@ export class AddChannelComponent implements OnInit {
 
     onSubmit() {
         const channel = new Channel();
-        var comp = this.form.value;
+        const comp = this.form.value;
         debugger;
         channel.Id = 0;
         channel.BusinessName = comp.businessname;

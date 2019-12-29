@@ -7,50 +7,361 @@
                 <div class="card-body">
                     <form name="form" [formGroup]="form" (ngSubmit)="form.valid">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
-                                    <label for="businessname">Business Name</label>
-                                    <input type="text" class="form-control" formControlName="businessname"
-                                        [ngClass]="{'is-invalid':form.get('businessname').touched && form.get('businessname').invalid}"
+                                    <label for="company">Company<span style="color:red">*</span></label>
+                                    <select class="custom-select" (change)="CountryChange($event)" formControlName="company">
+                                        <option value="0">--Select Company--</option>
+                                        <option *ngFor="let company of companies" [value]="company.id">
+                                            {{company.name}}</option>
+                                    </select>
+                                    <div *ngIf="form.get('company').errors" class="invalid-feedback">
+                                        <div *ngIf="form.get('company').errors?.required">Please select company
+                                        </div>
+                                    </div>
+                                    <!-- error block -->
+                                    <div class="invalid-feedback" *ngIf="form.get('company').errors?.required">
+                                        <sup>*</sup>Please select company
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="name">Name<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="name"
+                                        [ngClass]="{'is-invalid':form.get('name').touched && form.get('name').invalid}"
                                         required />
                                     <div class="invalid-feedback">
                                         <div>Name is required</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
-                                    <label for="slogan">Slogan</label>
-                                    <input type="text" class="form-control" formControlName="slogan"
-                                        [ngClass]="{'is-invalid':form.get('slogan').touched && form.get('slogan').invalid}"
+                                    <label for="category">Category<span style="color:red">*</span></label>
+                                    <select class="custom-select" (change)="CountryChange($event)" formControlName="category">
+                                        <option value="0">--Select Category--</option>
+                                        <option *ngFor="let category of categories" [value]="category.id">
+                                            {{category.name}}</option>
+                                    </select>
+                                    <div *ngIf="form.get('category').errors" class="invalid-feedback">
+                                        <div *ngIf="form.get('category').errors?.required">Please select category
+                                        </div>
+                                    </div>
+                                    <!-- error block -->
+                                    <div class="invalid-feedback" *ngIf="form.get('category').errors?.required">
+                                        <sup>*</sup>Please select category
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="servicetype">Service Type<span style="color:red">*</span></label>
+                                    <select class="custom-select" (change)="CountryChange($event)" formControlName="servicetype">
+                                        <option value="0">--Select Service Type--</option>
+                                        <option *ngFor="let serviceType of serviceTypes" [value]="servicetype.id">
+                                            {{serviceType.name}}</option>
+                                    </select>
+                                    <div *ngIf="form.get('servicetype').errors" class="invalid-feedback">
+                                        <div *ngIf="form.get('servicetype').errors?.required">Please select Service Type
+                                        </div>
+                                    </div>
+                                    <!-- error block -->
+                                    <div class="invalid-feedback" *ngIf="form.get('servicetype').errors?.required">
+                                        <sup>*</sup>Please select Service Type
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="switch-2">Local</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="local"></app-switch>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="switch-2">Digital</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="digital"></app-switch>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="switch-2">Free</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="free"></app-switch>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-2">
+                                    <div class="form-group">
+                                        <label for="switch-2" style="width: 10vw;">Fix Price</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="fixprice"></app-switch>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="switch-2" style="width: 15vw;">Free day on first activation</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="freedayonfirstactivation"></app-switch>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                        <label for="switch-2" style="width: 10vw;">Single Sold</label>
+                                        <div>
+                                            <app-switch id="switch-2" formControlName="singlesold"></app-switch>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="cotenturl">Content URL</label>
+                                    <input type="text" class="form-control" formControlName="cotenturl"/>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="channelsignal">Channel Signal<span style="color:red">*</span></label>
+                                    <select class="custom-select" (change)="CountryChange($event)" formControlName="channelsignal">
+                                        <option value="0">--Select Signal--</option>
+                                        <option *ngFor="let category of channelSignals" [value]="channelsignal.id">
+                                            {{channelsignal.name}}</option>
+                                    </select>
+                                    <div *ngIf="form.get('channelsignal').errors" class="invalid-feedback">
+                                        <div *ngIf="form.get('channelsignal').errors?.required">Please select channel signal
+                                        </div>
+                                    </div>
+                                    <!-- error block -->
+                                    <div class="invalid-feedback" *ngIf="form.get('channelsignal').errors?.required">
+                                        <sup>*</sup>Please select channel signal
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="cotenturl">Item Code</label>
+                                    <input type="text" class="form-control" formControlName="itemcode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-6">
+                                <label style="font-size: 20px;">Auto Prepaid Subscriber Settings </label>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="subscriptiontype">Subscription Type</label>
+                                    <select class="custom-select" (change)="CountryChange($event)" formControlName="subscriptiontype">
+                                        <option value="0">--Select Subscription Type--</option>
+                                        <option *ngFor="let subscriptionType of subscriptionTypes" [value]="subscriptiontype.id">
+                                            {{subscriptiontype.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="subscriptionvalue" style="width: 12vw;">Subscription Value<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="subscriptionvalue"
+                                        [ngClass]="{'is-invalid':form.get('subscriptionvalue').touched && form.get('subscriptionvalue').invalid}"
                                         required />
                                     <div class="invalid-feedback">
-                                        <div>Slogan is required</div>
+                                        <div>Subscription Value is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="freedays">Free Days</label>
+                                    <input type="text" class="form-control" formControlName="freedays" />
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="masterstbautoprepaidcharges">Master STB Auto Prepaid Charges<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="masterstbautoprepaidcharges"
+                                        [ngClass]="{'is-invalid':form.get('masterstbautoprepaidcharges').touched && form.get('masterstbautoprepaidcharges').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Master STB Auto Prepaid Charges is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="childstbautoprepaidcharges" style="width: 18vw;">Child STB Auto Prepaid Charges<span style="color:red">*</span> </label>
+                                    <input type="text" class="form-control" formControlName="childstbautoprepaidcharges"
+                                        [ngClass]="{'is-invalid':form.get('childstbautoprepaidcharges').touched && form.get('childstbautoprepaidcharges').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Child STB Auto Prepaid Charges is required</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
+                                <label style="font-size: 20px;">Prepaid & Postpaid Subscriber Settings </label>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-6">
+                                <label style="font-size: 20px;">Master STB Price </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
                                 <div class="form-group">
-                                    <label for="addressline1">Address Line 1</label>
-                                    <input type="text" class="form-control" formControlName="addressline1"
-                                        [ngClass]="{'is-invalid':form.get('addressline1').touched && form.get('addressline1').invalid}"
+                                    <label for="montlhyprice">Monthly Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="montlhyprice"
+                                        [ngClass]="{'is-invalid':form.get('montlhyprice').touched && form.get('montlhyprice').invalid}"
                                         required />
                                     <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
+                                        <div>Monthly Price is required</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
-                                    <label for="addressline2">Address Line 2</label>
-                                    <input type="text" class="form-control" formControlName="addressline2"
-                                        [ngClass]="{'is-invalid':form.get('addressline2').touched && form.get('addressline2').invalid}"
+                                    <label for="threemonthsprice" style="width: 12vw;">Three Months Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="threemonthsprice"
+                                        [ngClass]="{'is-invalid':form.get('threemonthsprice').touched && form.get('threemonthsprice').invalid}"
                                         required />
                                     <div class="invalid-feedback">
-                                        <div>Address line 2 is required</div>
+                                        <div>Three Months Price is required</div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="sixmonthsprice">Six Months Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="sixmonthsprice"
+                                        [ngClass]="{'is-invalid':form.get('sixmonthsprice').touched && form.get('sixmonthsprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Six Months Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="ninemonthsprice" style="width: 12vw;">Nine Months Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="ninemonthsprice"
+                                        [ngClass]="{'is-invalid':form.get('ninemonthsprice').touched && form.get('ninemonthsprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Nine Months Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="yearlyprice">Yearly Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="yearlyprice"
+                                        [ngClass]="{'is-invalid':form.get('yearlyprice').touched && form.get('yearlyprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Yearly Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label style="font-size: 20px;">Child STB Price </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="montlhyprice">Monthly Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="montlhyprice"
+                                        [ngClass]="{'is-invalid':form.get('montlhyprice').touched && form.get('montlhyprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Monthly Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="threemonthsprice" style="width: 12vw;">Three Months Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="threemonthsprice"
+                                        [ngClass]="{'is-invalid':form.get('threemonthsprice').touched && form.get('threemonthsprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Three Months Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="sixmonthsprice">Six Months Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="sixmonthsprice"
+                                        [ngClass]="{'is-invalid':form.get('sixmonthsprice').touched && form.get('sixmonthsprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Six Months Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="ninemonthsprice" style="width: 12vw;">Nine Months Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="ninemonthsprice"
+                                        [ngClass]="{'is-invalid':form.get('ninemonthsprice').touched && form.get('ninemonthsprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Nine Months Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="yearlyprice">Yearly Price<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" formControlName="yearlyprice"
+                                        [ngClass]="{'is-invalid':form.get('yearlyprice').touched && form.get('yearlyprice').invalid}"
+                                        required />
+                                    <div class="invalid-feedback">
+                                        <div>Yearly Price is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="generalfreedays">General Free Days</label>
+                                    <input type="text" class="form-control" formControlName="generalfreedays"/>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="startdate">Start Date</label>
+                                    <input type="date" class="form-control" formControlName="startdate" />
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="enddate">End Date</label>
+                                    <input type="date" class="form-control" formControlName="enddate" />
                                 </div>
                             </div>
                         </div>
@@ -59,278 +370,31 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="addressline3">Address Line 3</label>
-                                            <input type="text" class="form-control" formControlName="addressline3"
-                                                [ngClass]="{'is-invalid':form.get('addressline3').touched && form.get('addressline3').invalid}"
-                                                required />
-                                            <div class="invalid-feedback">
-                                                <div>Address line 3 is required</div>
-                                            </div>
+                                            <label for="description">Description</label>
+                                            <textarea type="text" class="form-control" formControlName="description">
+                                            </textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="coutry">Country</label>
-                                            <select class="custom-select" (change)="CountryChange($event)" formControlName="country">
-                                                <option value="0">--Select Country--</option>
-                                                <option *ngFor="let country of countries" [value]="country.id">
-                                                    {{country.name}}</option>
-                                            </select>
-                                            <div *ngIf="form.get('country').errors" class="invalid-feedback">
-                                                <div *ngIf="form.get('country').errors?.required">Please select country
-                                                </div>
-                                            </div>
-                                            <!-- error block -->
-                                            <div class="invalid-feedback" *ngIf="form.get('country').errors?.required">
-                                                <sup>*</sup>Please select country
-                                            </div>
+                                            <label for="modulator">Modulator</label>
+                                            <input type="text" class="form-control" formControlName="modulator"/> 
                                         </div>
                                         <div class="form-group">
-                                            <label for="coutry">State</label>
-                                            <select class="custom-select" (change)="StateChange($event)" formControlName="state">
-                                                <option value="0">--Select State--</option>
-                                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}
-                                                </option>
-                                            </select>
-                                            <div *ngIf="form.get('state').errors" class="invalid-feedback">
-                                                <div *ngIf="form.get('state').errors?.required">Please select state</div>
-                                            </div>
-                                            <!-- error block -->
-                                            <div class="invalid-feedback" *ngIf="form.get('state').errors?.required">
-                                                <sup>*</sup>Please select state
-                                            </div>
+                                            <label for="language">Language</label>
+                                            <input type="text" class="form-control" formControlName="language"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="zone">Zone</label>
-                                            <select class="custom-select" (change)="ZoneChange($event)" formControlName="zone">
-                                                <option value="0">--Select Zone--</option>
-                                                <option *ngFor="let zone of zones" [value]="zone.id">{{zone.name}}
-                                                </option>
-                                            </select>
-                                            <div *ngIf="form.get('zone').errors" class="invalid-feedback">
-                                                <div *ngIf="form.get('zone').errors?.required">Please select zone</div>
-                                            </div>
-                                            <!-- error block -->
-                                            <div class="invalid-feedback" *ngIf="form.get('zone').errors?.required">
-                                                <sup>*</sup>Please select zone
-                                            </div>
+                                            <label for="lcnno">LCN No.</label>
+                                            <input type="text" class="form-control" formControlName="lcnno"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="city">City</label>
-                                            <select class="custom-select" (change)="CityChange($event)" formControlName="city">
-                                                <option value="0">--Select City--</option>
-                                                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}
-                                                </option>
-                                            </select>
-                                            <div *ngIf="form.get('city').errors" class="invalid-feedback">
-                                                <div *ngIf="form.get('city').errors?.required">Please select city</div>
-                                            </div>
-                                            <!-- error block -->
-                                            <div class="invalid-feedback" *ngIf="form.get('city').errors?.required">
-                                                <sup>*</sup>Please select city
-                                            </div>
+                                            <label for="lcnrank">LCN Rank</label>
+                                            <input type="text" class="form-control" formControlName="lcnrank"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 Logo Control
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="postcode">PostCode</label>
-                                    <input type="text" class="form-control" formControlName="postcode"
-                                        [ngClass]="{'is-invalid':form.get('postcode').touched && form.get('postcode').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="addressline1">Email</label>
-                                    <input type="text" class="form-control" formControlName="email"
-                                        [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="mobileno">Mobile no</label>
-                                    <input type="text" class="form-control" formControlName="mobileno"
-                                        [ngClass]="{'is-invalid':form.get('mobileno').touched && form.get('mobileno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>mobile no is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="phoneno">Phone No</label>
-                                    <input type="text" class="form-control" formControlName="phoneno"
-                                        [ngClass]="{'is-invalid':form.get('phoneno').touched && form.get('phoneno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>phome no is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="tinno">Tin No</label>
-                                    <input type="text" class="form-control" formControlName="tinno"
-                                        [ngClass]="{'is-invalid':form.get('tinno').touched && form.get('tinno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Tin no is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="panno">Pan No</label>
-                                    <input type="text" class="form-control" formControlName="panno"
-                                        [ngClass]="{'is-invalid':form.get('panno').touched && form.get('panno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="servicetaxno">Service Tax No</label>
-                                    <input type="text" class="form-control" formControlName="servicetaxno"
-                                        [ngClass]="{'is-invalid':form.get('servicetaxno').touched && form.get('servicetaxno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="entertainmenttaxno">Entertainment Tax no</label>
-                                    <input type="text" class="form-control" formControlName="entertainmenttaxno"
-                                        [ngClass]="{'is-invalid':form.get('entertainmenttaxno').touched && form.get('entertainmenttaxno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="cstno">CST No</label>
-                                    <input type="text" class="form-control" formControlName="cstno"
-                                        [ngClass]="{'is-invalid':form.get('cstno').touched && form.get('cstno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="text" class="form-control" formControlName="website"
-                                        [ngClass]="{'is-invalid':form.get('website').touched && form.get('website').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="switch-2">Status</label>
-                                        <div>
-                                            <app-switch id="switch-2" formControlName="status"></app-switch>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="operatorname">Operator Name</label>
-                                    <input type="text" class="form-control" formControlName="operatorname"
-                                        [ngClass]="{'is-invalid':form.get('operatorname').touched && form.get('operatorname').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Operator name is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="operatorcode">Operator Code</label>
-                                    <input type="text" class="form-control" formControlName="operatorcode"
-                                        [ngClass]="{'is-invalid':form.get('operatorcode').touched && form.get('operatorcode').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="areaofoperation">Area of operation</label>
-                                    <input type="text" class="form-control" formControlName="areaofoperation"
-                                        [ngClass]="{'is-invalid':form.get('areaofoperation').touched && form.get('areaofoperation').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Address line 1 is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="gstno">GST No</label>
-                                    <input type="text" class="form-control" formControlName="gstno"
-                                        [ngClass]="{'is-invalid':form.get('gstno').touched && form.get('gstno').invalid}"
-                                        required />
-                                    <div class="invalid-feedback">
-                                        <div>Customer document save path is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="adharno">Aadhar No</label>
-                                    <input type="text" class="form-control" formControlName="adharno"
-                                        [ngClass]="{'is-invalid':form.get('adharno').touched && form.get('adharno').invalid}"
-                                        required />
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="documentsavepath">Customer document save path</label>
-                                    <input type="text" class="form-control" formControlName="documentsavepath"
-                                        [ngClass]="{'is-invalid':form.get('documentsavepath').touched && form.get('documentsavepath').invalid}"
-                                        required />
-                                   
-                                </div>
                             </div>
                         </div>
                         <br />
