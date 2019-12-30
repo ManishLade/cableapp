@@ -14,6 +14,7 @@ import { EditCompanyComponent } from './dialogs/edit/edit.dialog.component';
 import { Company } from './models/Company';
 import { CompanyDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { routerTransition } from '@app/router.animations';
 @Component({
     selector: 'app-company',
     templateUrl: './company.component.html',
@@ -23,7 +24,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
         AddCompanyComponent,
         EditCompanyComponent,
         DeleteDialogComponent
-    ]
+    ],
+    animations: [routerTransition()]
 })
 export class CompanyComponent implements OnInit {
     constructor(
@@ -35,7 +37,7 @@ export class CompanyComponent implements OnInit {
         private snackBar: MatSnackBar,
         private spinnerService: Ng4LoadingSpinnerService
     ) {}
-    displayedColumns = ['BusinessName','Email', 'Mobile No', 'Created Date', 'Status', 'Edit', 'Delete'];
+    displayedColumns = ['BusinessName', 'Email', 'Mobile No', 'Created Date', 'Status', 'Edit', 'Delete'];
     exampleDatabase: CompanyDataService | null;
     dataSource: ExampleDataSource | null;
     index: number;

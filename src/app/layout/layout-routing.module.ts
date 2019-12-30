@@ -17,7 +17,7 @@ if (role === 'Owner') {
 const routes: Routes = [
     {
         path: '',
-        component: LayoutComponent, pathMatch: 'prefix',
+        component: LayoutComponent,
         children: [
             { path: '', redirectTo: defaultRoute, pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
@@ -65,7 +65,7 @@ const routes: Routes = [
             { path: 'zone', loadChildren: () => import('./primary-masters/zone/zone.module').then(m => m.ZoneModule) },
             {
                 path: 'item-opening',
-                loadChildren: () => import('./manage-item/item-opening/item-opening.module').then(m => m.ItemOpeningModule)
+                loadChildren: () => import('./manage-item/item-opening/item-opening.module').then(m => m.HardwareItemModule)
             },
             {
                 path: 'device-pairing',

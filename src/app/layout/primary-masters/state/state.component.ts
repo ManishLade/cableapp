@@ -14,6 +14,7 @@ import { EditStateComponent } from './dialogs/edit/edit.dialog.component';
 import { State } from './models/state';
 import { StateDataService } from './services/data.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { routerTransition } from '@app/router.animations';
 @Component({
     selector: 'app-state',
     templateUrl: './state.component.html',
@@ -23,7 +24,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
         AddStateComponent,
         EditStateComponent,
         DeleteDialogComponent
-    ]
+    ],
+    animations: [routerTransition()]
 })
 export class StateComponent implements OnInit {
     constructor(
